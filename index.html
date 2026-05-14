@@ -36,10 +36,10 @@
       --font-allura:  'Allura','Brush Script MT',cursive;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#0a0a0f}
     body{
       font-family:var(--font-sans);
-      background:var(--bg);
+      background:transparent;
       color:var(--text);
       line-height:1.7;
       font-size:1.0625rem;
@@ -233,34 +233,15 @@
       min-height:100vh;display:flex;align-items:center;
       padding:7rem 0 4rem;position:relative;overflow:hidden;
     }
-    .hero-bg{position:absolute;inset:0;z-index:0}
-    .orb{
-      position:absolute;border-radius:50%;filter:blur(80px);
-      animation:orbFloat 20s ease-in-out infinite;
+    #bgWaves{
+      position:fixed;inset:0;width:100%;height:100%;
+      display:block;pointer-events:none;z-index:0;
     }
-    .orb-1{
-      width:600px;height:500px;
-      background:rgba(5,150,105,0.4);
-      top:-150px;left:-100px;
-      animation-duration:22s;
-    }
-    .orb-2{
-      width:500px;height:400px;
-      background:rgba(6,182,212,0.25);
-      top:20%;right:-150px;
-      animation-duration:28s;animation-delay:-8s;
-    }
-    .orb-3{
-      width:400px;height:350px;
-      background:rgba(16,185,129,0.15);
-      bottom:-100px;left:35%;
-      animation-duration:18s;animation-delay:-4s;
-    }
-    @keyframes orbFloat{
-      0%,100%{transform:translate(0,0) scale(1)}
-      25%{transform:translate(30px,-25px) scale(1.04)}
-      50%{transform:translate(-20px,15px) scale(0.97)}
-      75%{transform:translate(15px,20px) scale(1.02)}
+    .hero::before{
+      content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(ellipse 80% 60% at 22% 42%, rgba(5,150,105,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 78% 62%, rgba(6,182,212,0.10) 0%, transparent 55%);
     }
     .hero-inner{
       position:relative;z-index:1;
@@ -335,8 +316,12 @@
     .widget-dots span:nth-child(2){background:#febc2e}
     .widget-dots span:nth-child(3){background:#28c840}
     .widget-title{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);flex:1;text-align:center}
-    .widget-body{padding:1.5rem;min-height:280px}
-    .chat-msg{display:flex;flex-direction:column;gap:1rem}
+    .widget-body{padding:1.25rem 1.5rem;height:330px;overflow:hidden;display:flex;flex-direction:column}
+    .chat-msg{display:flex;flex-direction:column;gap:0.85rem;flex:1;transition:opacity 0.4s ease}
+    .chat-msg.fading{opacity:0}
+    .seq-line{transition:opacity 0.2s ease}
+    .seq-cur{display:none}
+    .seq-cur.active{display:inline-block}
     .msg{display:flex;gap:0.75rem;align-items:flex-start}
     .msg-avatar{
       width:28px;height:28px;border-radius:50%;flex-shrink:0;
@@ -418,7 +403,7 @@
     /* =============================================
        PROBLEM SECTION
     ============================================= */
-    .problem{background:var(--bg)}
+    .problem{background:transparent}
     .problem-intro{
       font-size:clamp(1.2rem,2.5vw,1.5rem);
       font-weight:600;color:var(--text-muted);
@@ -453,7 +438,7 @@
     /* =============================================
        SERVICES
     ============================================= */
-    .services{background:linear-gradient(180deg,var(--bg) 0%,rgba(18,18,26,0.5) 100%)}
+    .services{background:transparent}
     .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
     /* Hero scroll indicator */
     .hero-scroll-hint{
@@ -542,7 +527,7 @@
     /* =============================================
        TESTIMONIALS
     ============================================= */
-    .testimonials{background:var(--bg)}
+    .testimonials{background:transparent}
     .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
     .testimonial-card{
       background:var(--surface);border:1px solid var(--border);
@@ -580,7 +565,7 @@
     /* =============================================
        PORTFOLIO
     ============================================= */
-    .portfolio{background:linear-gradient(180deg,var(--bg),var(--surface) 50%,var(--bg))}
+    .portfolio{background:transparent}
     .portfolio-filters{
       display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;
     }
@@ -679,7 +664,7 @@
     /* =============================================
        ABOUT
     ============================================= */
-    .about{background:var(--bg)}
+    .about{background:transparent}
     .about-grid{
       display:grid;grid-template-columns:1fr 1.4fr;
       gap:4rem;align-items:center;
@@ -778,7 +763,7 @@
     /* =============================================
        FAQ
     ============================================= */
-    .faq{background:var(--bg)}
+    .faq{background:transparent}
     .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:0.5rem}
     .faq-item{
       background:var(--surface);border:1px solid var(--border);
@@ -826,9 +811,7 @@
     /* =============================================
        CONTACT
     ============================================= */
-    .contact{
-      background:linear-gradient(180deg,var(--bg) 0%,rgba(5,150,105,0.04) 50%,var(--bg) 100%);
-    }
+    .contact{background:transparent}
     .contact-grid{
       display:grid;grid-template-columns:1.2fr 1fr;
       gap:4rem;align-items:start;
@@ -1167,9 +1150,7 @@
     .stat-num.accent{text-shadow:0 0 28px rgba(5,150,105,0.6)}
     .stats-bar-num{text-shadow:0 0 24px rgba(5,150,105,0.5)}
 
-    /* Hero bg parallax perf */
-    .hero-bg{will-change:transform}
-    .orb{will-change:transform}
+    #bgWaves{will-change:contents}
 
     /* Testimonial hover */
     .testimonial-card{
@@ -1208,6 +1189,7 @@
   </style>
 </head>
 <body>
+  <canvas id="bgWaves"></canvas>
   <div id="scrollProgress"></div>
   <div id="spotlight"></div>
 
@@ -1299,11 +1281,6 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-    </div>
     <div class="hero-inner">
       <div class="hero-tag">Цифровой мастер · Владивосток</div>
       <h1 class="hero-title">
@@ -1354,15 +1331,21 @@
         </div>
         <div class="widget-body">
           <div class="chat-msg" id="chatMessages">
-            <div class="msg msg-user">
+            <div class="msg msg-user seq-line" id="seqLine0" style="opacity:0">
               <div class="msg-avatar">Вы</div>
-              <div class="msg-bubble">Что умеет ИИ-агент для бизнеса?</div>
+              <div class="msg-bubble"><span class="seq-text"></span><span class="cursor seq-cur"></span></div>
             </div>
-            <div class="msg msg-bot">
+            <div class="msg msg-bot seq-line" id="seqLine1" style="opacity:0">
               <div class="msg-avatar">ИИ</div>
-              <div class="msg-bubble" id="botResponse">
-                <span id="typewriterText"></span><span class="cursor"></span>
-              </div>
+              <div class="msg-bubble"><span class="seq-text"></span><span class="cursor seq-cur"></span></div>
+            </div>
+            <div class="msg msg-user seq-line" id="seqLine2" style="opacity:0">
+              <div class="msg-avatar">Вы</div>
+              <div class="msg-bubble"><span class="seq-text"></span><span class="cursor seq-cur"></span></div>
+            </div>
+            <div class="msg msg-bot seq-line" id="seqLine3" style="opacity:0">
+              <div class="msg-avatar">ИИ</div>
+              <div class="msg-bubble"><span class="seq-text"></span><span class="cursor seq-cur"></span></div>
             </div>
           </div>
         </div>
@@ -1720,7 +1703,7 @@
         </div>
         <div class="about-content reveal-right">
           <div class="section-label" style="margin-bottom:1rem">Обо мне</div>
-          <h2 style="margin-bottom:1.25rem">Привет, я <span class="gradient-text">Алексей</span></h2>
+          <h2 style="margin-bottom:1.25rem">Привет, я <span class="gradient-text">Маргарита</span></h2>
           <p class="about-text">
             Помогаю бизнесу и стартапам превращать идеи в работающие цифровые продукты с 2020 года. Большинство специалистов умеют что-то одно: сайты, или приложения, или ИИ. Я работаю на всех трёх слоях одновременно — и это значит, что вы получаете цельный продукт без потерь при передаче между командами.
           </p>
@@ -2208,47 +2191,80 @@
       observerStat.observe(el);
     });
 
-    /* ── TYPEWRITER ── */
-    const messages = [
-      "Отвечает клиентам в WhatsApp в 3 часа ночи без зарплаты.",
-      "Обрабатывает входящие заявки и квалифицирует лиды за секунды.",
-      "Ищет информацию, пишет черновики, суммирует встречи — без участия менеджера.",
-      "Напоминает клиентам о записях и уменьшает количество «забытых» встреч.",
-      "Отвечает на одни и те же вопросы 24/7 вместо вашего менеджера."
+    /* ── SEQUENTIAL TYPEWRITER ── */
+    const chatSets = [
+      ["Что умеет ИИ-агент для бизнеса?",
+       "Отвечает клиентам в WhatsApp в 3 часа ночи без зарплаты.",
+       "Как он квалифицирует лиды?",
+       "Обрабатывает входящие заявки и квалифицирует лиды за секунды."],
+      ["Может заменить менеджера?",
+       "Ищет информацию, пишет черновики, суммирует встречи — без участия менеджера.",
+       "А если клиенты забывают о встречах?",
+       "Напоминает о записях и уменьшает количество «забытых» встреч."],
+      ["Работает ли ночью?",
+       "Отвечает на одни и те же вопросы 24/7 вместо вашего менеджера.",
+       "Сложно ли его настроить?",
+       "Запускается за 1–2 недели. Под ваш бизнес, без технических знаний."],
+      ["Какие каналы поддерживает?",
+       "Telegram, WhatsApp, ВКонтакте, сайт — там, где уже есть ваши клиенты.",
+       "Это дорого для малого бизнеса?",
+       "Окупается за первый месяц: заменяет часть работы менеджера."],
     ];
-    let msgIdx = 0;
-    let charIdx = 0;
-    let isDeleting = false;
-    let typeTimeout;
-    const typeEl = document.getElementById('typewriterText');
 
-    function typewrite() {
-      const current = messages[msgIdx];
-      if (!isDeleting) {
-        typeEl.textContent = current.substring(0, charIdx + 1);
-        charIdx++;
-        if (charIdx === current.length) {
-          isDeleting = true;
-          typeTimeout = setTimeout(typewrite, 2200);
+    const seqLines = document.querySelectorAll('.seq-line');
+    const seqTexts = document.querySelectorAll('.seq-text');
+    const seqCurs  = document.querySelectorAll('.seq-cur');
+    const chatEl2  = document.getElementById('chatMessages');
+    let setIdx = 0, twTimer;
+
+    function runSet(set) {
+      seqLines.forEach(el => { el.style.opacity = '0'; });
+      seqTexts.forEach(el => { el.textContent = ''; });
+      seqCurs.forEach(c  => c.classList.remove('active'));
+
+      let lineIdx = 0, charIdx = 0;
+
+      function typeStep() {
+        if (lineIdx >= set.length) {
+          twTimer = setTimeout(() => {
+            chatEl2.classList.add('fading');
+            setTimeout(() => {
+              setIdx = (setIdx + 1) % chatSets.length;
+              chatEl2.classList.remove('fading');
+              runSet(chatSets[setIdx]);
+            }, 400);
+          }, 2800);
           return;
         }
-      } else {
-        typeEl.textContent = current.substring(0, charIdx - 1);
-        charIdx--;
-        if (charIdx === 0) {
-          isDeleting = false;
-          msgIdx = (msgIdx + 1) % messages.length;
+        const text = set[lineIdx];
+        seqLines[lineIdx].style.opacity = '1';
+        seqCurs.forEach(c => c.classList.remove('active'));
+        seqCurs[lineIdx].classList.add('active');
+
+        if (charIdx < text.length) {
+          seqTexts[lineIdx].textContent = text.substring(0, charIdx + 1);
+          charIdx++;
+          twTimer = setTimeout(typeStep, 38);
+        } else {
+          seqCurs[lineIdx].classList.remove('active');
+          lineIdx++;
+          charIdx = 0;
+          twTimer = setTimeout(typeStep, lineIdx % 2 === 0 ? 600 : 350);
         }
       }
-      typeTimeout = setTimeout(typewrite, isDeleting ? 28 : 42);
+      typeStep();
     }
-    typewrite();
 
-    /* Widget next button */
+    runSet(chatSets[0]);
+
     document.getElementById('widgetNextBtn').addEventListener('click', () => {
-      clearTimeout(typeTimeout);
-      isDeleting = true;
-      typewrite();
+      clearTimeout(twTimer);
+      chatEl2.classList.add('fading');
+      setTimeout(() => {
+        setIdx = (setIdx + 1) % chatSets.length;
+        chatEl2.classList.remove('fading');
+        runSet(chatSets[setIdx]);
+      }, 400);
     });
 
     /* ── PORTFOLIO FILTER ── */
@@ -2357,6 +2373,165 @@
       document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
       easeSpotlight();
     }
+
+    /* ── WAVE + PULSE + ORB BACKGROUND ── */
+    (function() {
+      const cv = document.getElementById('bgWaves');
+      if (!cv) return;
+      const cx = cv.getContext('2d');
+      let W, H, lastSpawn = 0;
+
+      /* Волны */
+      const WAVES = [
+        { yF:0.14, amp:55, freq:0.0025, spd:0.00060, r:5,  g:150, b:105, a:0.07 },
+        { yF:0.38, amp:42, freq:0.0032, spd:0.00080, r:6,  g:182, b:212, a:0.06 },
+        { yF:0.63, amp:60, freq:0.0020, spd:0.00050, r:52, g:211, b:153, a:0.07 },
+        { yF:0.86, amp:48, freq:0.0028, spd:0.00070, r:6,  g:182, b:212, a:0.06 },
+      ];
+      WAVES.forEach(w => { w.phase = Math.random() * Math.PI * 2; });
+
+      /* Плавающие свечения (орбы) — разная яркость, тёмные зазоры между */
+      const ORBS = [
+        { bx:0.12, by:0.18, rx:55, ry:40, phX:0.0, phY:0.8, spX:0.00018, spY:0.00015, pA:0.0, pS:0.00045, scX:1.3, scY:1.0,  rad:420, r:5,  g:150, b:105, a:0.32 },
+        { bx:0.84, by:0.55, rx:50, ry:38, phX:1.8, phY:0.3, spX:0.00015, spY:0.00020, pA:2.1, pS:0.00038, scX:1.2, scY:0.95, rad:400, r:6,  g:182, b:212, a:0.28 },
+        { bx:0.52, by:0.80, rx:65, ry:45, phX:3.5, phY:2.2, spX:0.00020, spY:0.00015, pA:4.2, pS:0.00052, scX:1.2, scY:1.0,  rad:380, r:52, g:211, b:153, a:0.24 },
+        { bx:0.22, by:0.62, rx:58, ry:42, phX:2.8, phY:1.0, spX:0.00016, spY:0.00013, pA:3.3, pS:0.00035, scX:1.25,scY:0.95, rad:360, r:5,  g:150, b:105, a:0.26 },
+        { bx:0.88, by:0.22, rx:45, ry:32, phX:1.2, phY:3.5, spX:0.00012, spY:0.00022, pA:1.0, pS:0.00042, scX:1.15,scY:1.0,  rad:320, r:6,  g:182, b:212, a:0.20 },
+        { bx:0.60, by:0.38, rx:52, ry:38, phX:5.0, phY:1.5, spX:0.00014, spY:0.00018, pA:5.5, pS:0.00040, scX:1.1, scY:1.0,  rad:340, r:52, g:211, b:153, a:0.18 },
+      ];
+
+      /* Цвета импульсов */
+      const PCOLS = [{ r:52,g:211,b:153 }, { r:34,g:211,b:238 }, { r:110,g:231,b:183 }];
+      const pulses = [];
+
+      function wY(w, x) { return w.yF * H + w.amp * Math.sin(w.phase + x * w.freq); }
+
+      function spawnPulse() {
+        const w   = WAVES[Math.floor(Math.random() * WAVES.length)];
+        const c   = PCOLS[Math.floor(Math.random() * PCOLS.length)];
+        const dir = Math.random() > 0.5 ? 1 : -1;
+        pulses.push({
+          w, r:c.r, g:c.g, b:c.b, dir,
+          x: dir === 1 ? -20 : W + 20,
+          speed: 3.5 + Math.random() * 2.5,
+          tail:  180 + Math.random() * 120,
+        });
+      }
+
+      function resize() {
+        W = cv.width  = window.innerWidth;
+        H = cv.height = window.innerHeight;
+      }
+
+      function frame(ts) {
+        cx.clearRect(0, 0, W, H);
+
+        WAVES.forEach(w => { w.phase += w.spd; });
+        ORBS.forEach(o  => { o.phX += o.spX; o.phY += o.spY; o.pA += o.pS; });
+
+        /* Орбы — два слоя: яркое ядро + широкое мягкое гало */
+        ORBS.forEach(o => {
+          const x  = (o.bx + (o.rx / (W||1)) * Math.sin(o.phX)) * W;
+          const y  = (o.by + (o.ry / (H||1)) * Math.sin(o.phY)) * H;
+          const ea = o.a * (0.80 + 0.20 * Math.sin(o.pA));
+
+          cx.save();
+          cx.translate(x, y);
+          cx.scale(o.scX, o.scY);
+
+          /* Широкое мягкое гало снаружи */
+          const gHalo = cx.createRadialGradient(0, 0, 0, 0, 0, o.rad * 1.6);
+          gHalo.addColorStop(0,    `rgba(${o.r},${o.g},${o.b},${(ea*0.28).toFixed(3)})`);
+          gHalo.addColorStop(0.5,  `rgba(${o.r},${o.g},${o.b},${(ea*0.07).toFixed(3)})`);
+          gHalo.addColorStop(1,    'rgba(0,0,0,0)');
+          cx.beginPath();
+          cx.arc(0, 0, o.rad * 1.6, 0, 6.283);
+          cx.fillStyle = gHalo;
+          cx.fill();
+
+          /* Яркое плотное ядро */
+          const gCore = cx.createRadialGradient(0, 0, 0, 0, 0, o.rad);
+          gCore.addColorStop(0,    `rgba(${o.r},${o.g},${o.b},${ea.toFixed(3)})`);
+          gCore.addColorStop(0.42, `rgba(${o.r},${o.g},${o.b},${(ea*0.42).toFixed(3)})`);
+          gCore.addColorStop(0.78, `rgba(${o.r},${o.g},${o.b},${(ea*0.08).toFixed(3)})`);
+          gCore.addColorStop(1,    'rgba(0,0,0,0)');
+          cx.beginPath();
+          cx.arc(0, 0, o.rad, 0, 6.283);
+          cx.fillStyle = gCore;
+          cx.fill();
+
+          cx.restore();
+        });
+
+        /* Базовые волны */
+        WAVES.forEach(w => {
+          cx.beginPath();
+          for (let x = 0; x <= W; x += 5) {
+            const y = wY(w, x);
+            x === 0 ? cx.moveTo(x, y) : cx.lineTo(x, y);
+          }
+          cx.strokeStyle = `rgba(${w.r},${w.g},${w.b},${w.a})`;
+          cx.lineWidth = 1;
+          cx.shadowColor = `rgba(${w.r},${w.g},${w.b},${w.a*3})`;
+          cx.shadowBlur = 12;
+          cx.stroke();
+        });
+        cx.shadowBlur = 0;
+
+        /* Спавн импульсов */
+        if (pulses.length < 5 && ts - lastSpawn > 800 + Math.random() * 1400) {
+          spawnPulse();
+          lastSpawn = ts;
+        }
+
+        /* Импульсы */
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const p = pulses[i];
+          p.x += p.speed * p.dir;
+          const done = p.dir === 1 ? p.x > W + 20 : p.x < -20;
+          if (done) { pulses.splice(i, 1); continue; }
+
+          const hx = p.x;
+          const hy = wY(p.w, Math.max(0, Math.min(W - 1, hx)));
+          const tx = p.dir === 1 ? Math.max(0, hx - p.tail) : Math.min(W, hx + p.tail);
+          const x0 = Math.min(hx, tx), x1 = Math.max(hx, tx);
+
+          if (x1 > x0) {
+            cx.beginPath();
+            for (let x = x0; x <= x1; x += 3) {
+              const y = wY(p.w, x);
+              x === x0 ? cx.moveTo(x, y) : cx.lineTo(x, y);
+            }
+            const gr = cx.createLinearGradient(x0, 0, x1, 0);
+            const headRight = p.dir === 1;
+            gr.addColorStop(0,    headRight ? `rgba(${p.r},${p.g},${p.b},0)`    : `rgba(${p.r},${p.g},${p.b},0.82)`);
+            gr.addColorStop(0.65, headRight ? `rgba(${p.r},${p.g},${p.b},0.28)` : `rgba(${p.r},${p.g},${p.b},0.28)`);
+            gr.addColorStop(1,    headRight ? `rgba(${p.r},${p.g},${p.b},0.82)` : `rgba(${p.r},${p.g},${p.b},0)`);
+            cx.strokeStyle = gr;
+            cx.lineWidth = 2;
+            cx.shadowColor = `rgba(${p.r},${p.g},${p.b},0.65)`;
+            cx.shadowBlur = 20;
+            cx.stroke();
+          }
+
+          /* Голова */
+          cx.beginPath();
+          cx.arc(hx, hy, 3, 0, 6.283);
+          cx.fillStyle = 'rgba(255,255,255,0.95)';
+          cx.shadowColor = `rgba(${p.r},${p.g},${p.b},1)`;
+          cx.shadowBlur = 18;
+          cx.fill();
+          cx.shadowBlur = 0;
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      resize();
+      requestAnimationFrame(frame);
+      let rt;
+      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 200); });
+    })();
 
     /* ── 3D CARD TILT ── */
     document.querySelectorAll('.service-card, .testimonial-card, .portfolio-card').forEach(card => {
