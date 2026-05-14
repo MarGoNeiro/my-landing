@@ -70,8 +70,8 @@
     /* =============================================
        TYPOGRAPHY
     ============================================= */
-    h1{font-family:var(--font-display);font-size:clamp(3rem,6.5vw,5.5rem);font-weight:400;line-height:1.08;letter-spacing:0.01em}
-    h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-0.005em}
+    h1{font-family:var(--font-display);font-size:clamp(3rem,6.5vw,5.5rem);font-weight:400;line-height:1.08;letter-spacing:0.01em;background:linear-gradient(135deg,#f0f9ff 10%,#7dd3fc 55%,#38bdf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    h2{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-0.005em;background:linear-gradient(135deg,#f0f9ff 10%,#7dd3fc 55%,#38bdf8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     h3{font-family:var(--font-display);font-size:clamp(1.15rem,2.5vw,1.45rem);font-weight:600;line-height:1.3;letter-spacing:0em}
     p{color:var(--text-muted);line-height:1.7}
     .gradient-text{
@@ -269,7 +269,7 @@
     }
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
     .hero-title{width:100%;text-align:center;text-wrap:balance}
-    .hero-title em{font-style:italic;color:var(--accent-2);font-weight:700;white-space:nowrap}
+    .hero-title em{font-style:italic;color:var(--accent-2);-webkit-text-fill-color:var(--accent-2);font-weight:700;white-space:nowrap}
     .hero-title .gradient-text{white-space:nowrap}
     .hero-sub{
       font-size:1.15rem;color:#94a3b8;line-height:1.75;
