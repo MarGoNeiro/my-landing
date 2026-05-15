@@ -235,12 +235,97 @@
     }
     .hero-nebula{
       position:absolute;inset:0;z-index:0;pointer-events:none;
-      background-image:url('https://images.unsplash.com/photo-1744138147319-f86f8a0d9667?fm=jpg&q=90&w=1800&auto=format&fit=crop');
-      background-size:cover;background-position:right 30% center;
-      transform:scaleX(-1);
+      background-image:url('nebula.jpeg');
+      background-size:cover;
+      background-position:right 10% center;
       opacity:0.22;
       mix-blend-mode:screen;
-      filter:hue-rotate(-80deg) saturate(1.6) brightness(1.1);
+      -webkit-mask:radial-gradient(ellipse 65% 80% at 75% 50%, black 20%, transparent 72%);
+      mask:radial-gradient(ellipse 65% 80% at 75% 50%, black 20%, transparent 72%);
+    }
+    /* Туманность в секциях — мягкая, без границ */
+    .section-nebula{
+      position:absolute;inset:0;pointer-events:none;z-index:0;
+      background-image:url('nebula.jpeg');
+      background-size:150%;
+      mix-blend-mode:screen;
+    }
+    /* Левый верхний угол */
+    .sn-top-left{
+      background-position:0% 0%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 55% 60% at 8% 15%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 60% at 8% 15%, black 10%, transparent 68%);
+    }
+    /* Правый нижний угол */
+    .sn-bottom-right{
+      background-position:100% 100%;
+      opacity:0.20;
+      -webkit-mask:radial-gradient(ellipse 55% 60% at 92% 88%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 60% at 92% 88%, black 10%, transparent 68%);
+    }
+    /* Левый нижний угол */
+    .sn-bottom-left{
+      background-position:0% 100%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 55% 55% at 8% 90%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 55% at 8% 90%, black 10%, transparent 68%);
+    }
+    /* Правый верхний угол */
+    .sn-top-right{
+      background-position:100% 0%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 55% 55% at 92% 12%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 55% at 92% 12%, black 10%, transparent 68%);
+    }
+    /* Центр-правый */
+    .sn-mid-right{
+      background-position:100% 50%;
+      opacity:0.16;
+      -webkit-mask:radial-gradient(ellipse 45% 65% at 95% 50%, black 10%, transparent 65%);
+      mask:radial-gradient(ellipse 45% 65% at 95% 50%, black 10%, transparent 65%);
+    }
+    /* Услуги — правый, с середины карточек вниз */
+    .sn-services{
+      background-position:100% 55%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 52% 60% at 93% 58%, black 10%, transparent 65%);
+      mask:radial-gradient(ellipse 52% 60% at 93% 58%, black 10%, transparent 65%);
+    }
+    /* Обо мне — левый верх */
+    .sn-about{
+      background-position:0% 10%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 55% 60% at 7% 18%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 60% at 7% 18%, black 10%, transparent 68%);
+    }
+    /* Клиенты — центр-левый */
+    .sn-mid-left{
+      background-position:0% 50%;
+      opacity:0.16;
+      -webkit-mask:radial-gradient(ellipse 48% 65% at 5% 55%, black 10%, transparent 65%);
+      mask:radial-gradient(ellipse 48% 65% at 5% 55%, black 10%, transparent 65%);
+    }
+    /* Процесс — правый низ */
+    .sn-process{
+      background-position:100% 80%;
+      opacity:0.15;
+      -webkit-mask:radial-gradient(ellipse 52% 55% at 92% 80%, black 10%, transparent 65%);
+      mask:radial-gradient(ellipse 52% 55% at 92% 80%, black 10%, transparent 65%);
+    }
+    /* FAQ — левый верх */
+    .sn-faq{
+      background-position:0% 20%;
+      opacity:0.15;
+      -webkit-mask:radial-gradient(ellipse 50% 60% at 6% 22%, black 10%, transparent 65%);
+      mask:radial-gradient(ellipse 50% 60% at 6% 22%, black 10%, transparent 65%);
+    }
+    /* Контакт — правый верх */
+    .sn-contact{
+      background-position:100% 10%;
+      opacity:0.18;
+      -webkit-mask:radial-gradient(ellipse 55% 60% at 92% 15%, black 10%, transparent 68%);
+      mask:radial-gradient(ellipse 55% 60% at 92% 15%, black 10%, transparent 68%);
     }
     #bgWaves{
       position:fixed;inset:0;width:100%;height:100%;
@@ -389,8 +474,8 @@
       from{opacity:0}
       to{opacity:1}
     }
-    .hero-tag      {animation:heroIn 1.4s 0.3s  ease both}
-    .hero-title    {animation:heroIn 1.6s 0.9s  ease both}
+    .hero-title    {animation:heroIn 1.2s 0.2s  ease both}
+    .hero-tag      {animation:heroIn 1.2s 0.8s  ease both}
     .hero-cursive  {animation:heroIn 1.2s 1.4s  ease both}
     .hero-sub      {animation:heroIn 1.4s 1.8s  ease both}
     .hero-buttons  {animation:heroIn 1.3s 2.4s  ease both}
@@ -400,16 +485,63 @@
     /* =============================================
        SCROLL REVEAL
     ============================================= */
+    /* Базовое состояние — всё скрыто */
     .reveal,.reveal-left,.reveal-right,.reveal-scale{
       opacity:0;
-      transition:opacity 1.6s cubic-bezier(0.42,0,1,1);
     }
-    /* Карточки услуг — своя плавная волна */
-    .service-card.reveal{
-      transition:opacity 2.5s cubic-bezier(0,0,0.58,1);
+
+    /* Заголовки секций */
+    h2.reveal{
+      transform:translateY(20px);
+      transition:opacity 0.45s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1);
     }
+    .section-label.reveal{
+      transform:translateY(14px);
+      transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Обычный текст — только opacity, без движения */
+    p.reveal{
+      transform:none;
+      transition:opacity 1.2s ease;
+    }
+
+    /* Карточки — только плавное проявление */
+    .service-card.reveal,
+    .portfolio-card.reveal,
+    .testimonial-card.reveal,
+    .problem-card.reveal,
+    .faq-item.reveal{
+      transform:none;
+      transition:opacity 1.2s ease;
+    }
+
+    /* Остальные reveal — стандартный подъём */
+    .reveal{
+      transform:translateY(20px);
+      transition:opacity 1s ease, transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Въезд слева/справа */
+    .reveal-left{
+      transform:translateX(-28px);
+      transition:opacity 1s ease, transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-right{
+      transform:translateX(28px);
+      transition:opacity 1s ease, transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Масштаб */
+    .reveal-scale{
+      transform:translateY(20px) scale(0.96);
+      transition:opacity 1s ease, transform 1s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    /* Финальное состояние — всё на месте */
     .reveal.visible,.reveal-left.visible,.reveal-right.visible,.reveal-scale.visible{
       opacity:1;
+      transform:none;
     }
     .reveal-delay-1,.reveal-delay-2,.reveal-delay-3,.reveal-delay-4,.reveal-delay-5{transition-delay:0s}
 
@@ -1027,7 +1159,8 @@
     /* Hero cursive accent */
     .hero-cursive{
       font-family:var(--font-allura);font-size:clamp(1.6rem,3vw,2.4rem);
-      color:var(--accent);line-height:1;margin-top:-0.5rem;
+      color:rgba(203,213,225,0.80);line-height:1;margin-top:-0.5rem;
+      text-shadow:0 1px 10px rgba(0,0,0,0.6);
       opacity:0;animation:fadeUp 0.8s 0.6s ease forwards;
     }
     @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
@@ -1351,7 +1484,8 @@
 
   <div class="rule"></div>
   <!-- ============ PROBLEM ============ -->
-  <section class="problem section" id="problem">
+  <section class="problem section" id="problem" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-top-left"></div>
     <div class="container">
       <p class="problem-intro reveal">Вы, наверное, уже сталкивались с этим:</p>
       <div class="problem-grid">
@@ -1380,7 +1514,8 @@
 
   <div class="rule"></div>
   <!-- ============ SERVICES ============ -->
-  <section class="services section" id="services">
+  <section class="services section" id="services" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-services"></div>
     <div class="container">
       <div class="section-header">
         <div class="section-label reveal">Услуги</div>
@@ -1618,7 +1753,8 @@
   </section>
 
   <!-- ============ ABOUT ============ -->
-  <section class="about section" id="about">
+  <section class="about section" id="about" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-about"></div>
     <div class="container">
       <div class="about-grid">
         <div class="about-photo-wrap reveal-left">
@@ -1668,7 +1804,8 @@
 
   <div class="rule"></div>
   <!-- ============ TESTIMONIALS ============ -->
-  <section class="testimonials section" id="testimonials">
+  <section class="testimonials section" id="testimonials" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-mid-left"></div>
     <div class="container">
       <div class="section-header">
         <div class="section-label reveal">Клиенты</div>
@@ -1731,7 +1868,8 @@
   </section>
 
   <!-- ============ PROCESS ============ -->
-  <section class="process section" id="process">
+  <section class="process section" id="process" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-process"></div>
     <div class="container">
       <div class="section-header">
         <div class="section-label reveal">Процесс</div>
@@ -1787,7 +1925,8 @@
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="faq section" id="faq">
+  <section class="faq section" id="faq" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-faq"></div>
     <div class="container">
       <div class="section-header">
         <div class="section-label reveal">FAQ</div>
@@ -1891,7 +2030,8 @@
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section class="contact section" id="contact">
+  <section class="contact section" id="contact" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-contact"></div>
     <div class="container">
       <div class="section-header">
         <div class="section-label reveal">Контакт</div>
@@ -2118,8 +2258,8 @@
 
     /* ── SCROLL REVEAL — секционная последовательная анимация ── */
     (function() {
-      const STEP = 270;   /* мс между элементами внутри секции */
-      const BASE = 80;    /* мс пауза перед первым элементом */
+      const STEP = 160;   /* мс между элементами внутри секции */
+      const BASE = 60;    /* мс пауза перед первым элементом */
 
       /* Собираем элементы по секциям в DOM-порядке */
       const sectionMap = new Map();
@@ -2133,12 +2273,24 @@
         entries.forEach(function(e) {
           if (!e.isIntersecting) return;
           const items = sectionMap.get(e.target) || [];
-          items.forEach(function(el, i) {
-            setTimeout(function() { el.classList.add('visible'); }, BASE + i * STEP);
+          /* Заголовки всегда первыми, потом остальное */
+          const heads = items.filter(function(el) {
+            return el.tagName === 'H2' || el.classList.contains('section-label');
+          });
+          const rest = items.filter(function(el) {
+            return el.tagName !== 'H2' && !el.classList.contains('section-label');
+          });
+          heads.forEach(function(el) {
+            const delay = el.tagName === 'H2' ? BASE : BASE + 120;
+            setTimeout(function() { el.classList.add('visible'); }, delay);
+          });
+          const restStart = heads.length > 0 ? BASE + STEP + 120 : BASE;
+          rest.forEach(function(el, i) {
+            setTimeout(function() { el.classList.add('visible'); }, restStart + i * STEP);
           });
           obs.unobserve(e.target);
         });
-      }, {threshold: 0.08, rootMargin: '0px 0px -40px 0px'});
+      }, {threshold: 0.08, rootMargin: '0px 0px -60px 0px'});
 
       requestAnimationFrame(function() {
         requestAnimationFrame(function() {
