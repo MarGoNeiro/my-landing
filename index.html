@@ -389,19 +389,19 @@
 
     /* AI Widget */
     .ai-widget{
-      background:rgba(7,18,48,0.92);
-      border:1px solid rgba(6,182,212,0.22);
+      background:rgba(7,18,48,0.60);
+      border:1px solid rgba(6,182,212,0.16);
       border-radius:var(--radius-lg);
       overflow:hidden;
-      box-shadow:0 24px 64px rgba(0,10,40,0.6),0 0 0 1px rgba(6,182,212,0.12);
+      box-shadow:0 16px 48px rgba(0,10,40,0.35),0 0 0 1px rgba(6,182,212,0.08);
       animation:heroIn 1.6s 1.3s ease both,widgetFloat 6s 4s ease-in-out infinite;
+      backdrop-filter:blur(12px);
     }
     .widget-header{
-      background:rgba(9,24,62,0.96);
-      border-bottom:1px solid rgba(6,182,212,0.15);
-      padding:0.75rem 1rem;
+      background:rgba(9,24,62,0.55);
+      border-bottom:1px solid rgba(6,182,212,0.12);
+      padding:0.55rem 1rem;
       display:flex;align-items:center;gap:0.75rem;
-      border-bottom:1px solid var(--border);
     }
     .widget-dots{display:flex;gap:6px}
     .widget-dots span{
@@ -411,7 +411,7 @@
     .widget-dots span:nth-child(2){background:#febc2e}
     .widget-dots span:nth-child(3){background:#28c840}
     .widget-title{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);flex:1;text-align:center}
-    .widget-body{padding:1.25rem 1.5rem;height:330px;overflow:hidden;display:flex;flex-direction:column}
+    .widget-body{padding:1rem 1.25rem;height:230px;overflow:hidden;display:flex;flex-direction:column}
     .chat-msg{display:flex;flex-direction:column;gap:0.85rem;flex:1;transition:opacity 0.4s ease}
     .chat-msg.fading{opacity:0}
     .seq-line{transition:opacity 0.2s ease}
@@ -434,8 +434,8 @@
       font-size:0.85rem;line-height:1.5;color:var(--text);
       max-width:calc(100% - 40px);
     }
-    .msg-user .msg-bubble{background:rgba(5,150,105,0.15);border-color:rgba(5,150,105,0.25);color:var(--text)}
-    .msg-bot .msg-bubble{background:rgba(9,24,62,0.75);border-color:rgba(6,182,212,0.18)}
+    .msg-user .msg-bubble{background:rgba(6,182,212,0.10);border-color:rgba(6,182,212,0.20);color:var(--text)}
+    .msg-bot .msg-bubble{background:rgba(9,24,62,0.50);border-color:rgba(6,182,212,0.14)}
     .msg-typing .msg-bubble{display:flex;gap:4px;align-items:center;padding:0.8rem 1rem}
     .typing-dot{
       width:6px;height:6px;border-radius:50%;background:var(--accent);
@@ -451,7 +451,7 @@
     }
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
     .widget-footer{
-      padding:1rem 1.5rem;border-top:1px solid var(--border);
+      padding:0.75rem 1.25rem;border-top:1px solid rgba(6,182,212,0.10);
       display:flex;gap:0.5rem;align-items:center;
     }
     .widget-input{
@@ -461,11 +461,11 @@
       font-family:var(--font-mono);outline:none;
     }
     .widget-send{
-      background:var(--accent);color:#fff;border-radius:6px;
+      background:rgba(6,182,212,0.75);color:#fff;border-radius:6px;
       padding:0.5rem 0.75rem;font-size:0.75rem;font-weight:600;
       transition:background var(--transition);
     }
-    .widget-send:hover{background:#047857}
+    .widget-send:hover{background:rgba(6,182,212,0.95)}
 
     /* =============================================
        HERO ANIMATIONS
@@ -510,7 +510,7 @@
     .service-card.reveal,
     .portfolio-card.reveal,
     .testimonial-card.reveal,
-    .problem-card.reveal,
+    .problem-wrap.reveal,
     .faq-item.reveal{
       transform:none;
       transition:opacity 1.2s ease;
@@ -558,20 +558,35 @@
       display:grid;grid-template-columns:repeat(3,1fr);
       gap:1.5rem;margin-bottom:1.5rem;
     }
+    .problem-wrap{ height:100%; }
+    .problem-outer{
+      transform:skewX(-6deg);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      height:100%;
+    }
+    .problem-outer:hover{
+      transform:skewX(-6deg) translateY(-5px);
+      box-shadow:6px 14px 44px rgba(251,100,100,0.15);
+    }
     .problem-card{
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:var(--radius);padding:2rem;
-      position:relative;overflow:hidden;
+      background:transparent;
+      border:1px solid rgba(251,100,100,0.28);
+      border-top:2px solid rgba(251,100,100,0.62);
+      border-radius:0;padding:1.75rem;
+      overflow:hidden;position:relative;
+      backdrop-filter:blur(6px);
+      height:100%;
     }
     .problem-card::before{
-      content:'';position:absolute;top:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      opacity:0;transition:opacity var(--transition);
+      content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+      background:linear-gradient(to bottom,rgba(251,100,100,0.7),transparent);
     }
-    .problem-card:hover::before{opacity:1}
-    .problem-emoji{font-size:2.5rem;margin-bottom:1rem;display:block}
-    .problem-card h3{color:var(--text);margin-bottom:0.75rem;font-size:1.15rem}
-    .problem-card p{font-size:1rem}
+    .problem-inner{transform:skewX(6deg);}
+    .problem-card-header{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:0.9rem}
+    .problem-card h3{text-align:center;}
+    .problem-emoji{font-size:1.7rem;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(251,100,100,0.45));}
+    .problem-card h3{color:var(--text);font-size:1.2rem;line-height:1.35;margin:0}
+    .problem-card p{font-size:1.02rem;text-align:justify;hyphens:auto;line-height:1.8}
     .problem-bridge{
       text-align:center;padding:2rem;
       background:linear-gradient(135deg,rgba(5,150,105,0.08),rgba(6,182,212,0.08));
@@ -1489,20 +1504,44 @@
     <div class="container">
       <p class="problem-intro reveal">Вы, наверное, уже сталкивались с этим:</p>
       <div class="problem-grid">
-        <div class="problem-card reveal reveal-delay-1">
-          <span class="problem-emoji">😮‍💨</span>
-          <h3>Агентство исчезло после сдачи</h3>
-          <p>Взяли деньги, сделали красиво — но сайт не приносит заявки. Через месяц на ваши письма перестали отвечать.</p>
+        <div class="problem-wrap reveal reveal-delay-1">
+          <div class="problem-outer">
+            <div class="problem-card">
+              <div class="problem-inner">
+                <div class="problem-card-header">
+                  <span class="problem-emoji">👻</span>
+                  <h3>Агентство исчезло после сдачи</h3>
+                </div>
+                <p>Взяли деньги, сделали красиво — но сайт не приносит заявки. Через месяц на ваши письма перестали отвечать.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="problem-card reveal reveal-delay-2">
-          <span class="problem-emoji">🤯</span>
-          <h3>Три подрядчика, три месяца хаоса</h3>
-          <p>Дизайнер, разработчик, «специалист по ИИ» — и они не могут договориться между собой, а страдает ваш бизнес.</p>
+        <div class="problem-wrap reveal reveal-delay-2">
+          <div class="problem-outer">
+            <div class="problem-card">
+              <div class="problem-inner">
+                <div class="problem-card-header">
+                  <span class="problem-emoji">🌀</span>
+                  <h3>Три подрядчика, три месяца хаоса</h3>
+                </div>
+                <p>Дизайнер, разработчик, «специалист по ИИ» — не могут договориться между собой, а страдает ваш бизнес.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="problem-card reveal reveal-delay-3">
-          <span class="problem-emoji">😴</span>
-          <h3>ИИ — одни слова без пользы</h3>
-          <p>Слышите «ИИ-агент» отовсюду, но никто не объясняет что конкретно изменится в вашем бизнесе. Только хайп.</p>
+        <div class="problem-wrap reveal reveal-delay-3">
+          <div class="problem-outer">
+            <div class="problem-card">
+              <div class="problem-inner">
+                <div class="problem-card-header">
+                  <span class="problem-emoji">🫧</span>
+                  <h3>ИИ — одни слова без пользы</h3>
+                </div>
+                <p>Слышите «ИИ-агент» отовсюду, но никто не объясняет что конкретно изменится в вашем бизнесе. Только хайп.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="problem-bridge reveal">
