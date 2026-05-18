@@ -160,8 +160,8 @@
       transition:background var(--transition),backdrop-filter var(--transition);
     }
     .nav.scrolled{
-      background:rgba(10,10,15,0.85);
-      backdrop-filter:blur(16px) saturate(180%);
+      background:rgba(10,10,15,0.60);
+      backdrop-filter:blur(20px) saturate(180%);
       border-bottom:1px solid var(--border);
     }
     .nav-inner{
@@ -581,6 +581,16 @@
     .problem-card::before{
       content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
       background:linear-gradient(to bottom,rgba(251,100,100,0.7),transparent);
+    }
+    @keyframes problemPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(251,100,100,0);border-color:rgba(251,100,100,0.28)}
+      50%{box-shadow:0 0 18px 4px rgba(251,100,100,0.18);border-color:rgba(251,100,100,0.55)}
+    }
+    @media(max-width:768px){
+      .problem-card{animation:problemPulse 3s ease-in-out infinite;}
+      .problem-wrap:nth-child(2) .problem-card{animation-delay:1s}
+      .problem-wrap:nth-child(3) .problem-card{animation-delay:2s}
+      .problem-card p{text-align:left}
     }
     .problem-inner{transform:skewX(6deg);}
     .problem-card-header{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:0.9rem}
@@ -1225,6 +1235,11 @@
       .hero-stats{gap:1.25rem}
       .process-steps{grid-template-columns:1fr;gap:1.5rem}
       .stats-bar{grid-template-columns:1fr 1fr}
+      .hero-sub{text-align:center;max-width:100%}
+      .hero-buttons{justify-content:center}
+      .hero-microcopy{text-align:center}
+      .stat-num{font-size:1.8rem}
+      .widget-body{height:280px}
     }
     /* =============================================
        LOGO SVG
@@ -1453,7 +1468,7 @@
         <div class="hero-stats">
           <div class="stat-item">
             <span class="stat-num accent" data-count="37">0</span>
-            <div class="stat-label">проектов<br>с 2020 года</div>
+            <div class="stat-label">завершённых<br>проектов</div>
           </div>
           <div class="stat-item">
             <span class="stat-num" data-count-float="4.8">0</span>
@@ -1637,7 +1652,7 @@
         <div class="about-photo-wrap reveal-left">
           <div class="about-photo">
             <div class="about-photo-inner">
-              <img src="Я.jpeg" alt="Маргарита" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+              <img src="%D0%AF.jpeg" alt="Маргарита" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
             </div>
           </div>
         </div>
