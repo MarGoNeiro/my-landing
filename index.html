@@ -1232,9 +1232,9 @@
       .about-photo{aspect-ratio:3/4;max-width:280px;margin:0 auto}
       .footer-inner{grid-template-columns:1fr;gap:2rem}
     }
-    .about-label-mobile{display:none}
+    .about-label-mobile-wrap{display:none}
     @media(max-width:768px){
-      .about-label-mobile{display:flex;justify-content:center;margin-bottom:1rem}
+      .about-label-mobile-wrap{display:flex;justify-content:center;margin-bottom:1rem}
       .about-content .section-label{display:none}
       .problem-bridge{padding:1rem 1.25rem}
     }
@@ -1664,7 +1664,7 @@
   <section class="about section" id="about" style="position:relative;overflow:hidden">
     <div class="section-nebula sn-about"></div>
     <div class="container">
-      <div class="section-label about-label-mobile reveal" style="margin-bottom:1rem">Обо мне</div>
+      <div class="about-label-mobile-wrap reveal"><div class="section-label">Обо мне</div></div>
       <div class="about-grid">
         <div class="about-photo-wrap reveal-left">
           <div class="about-photo">
