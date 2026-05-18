@@ -2039,13 +2039,6 @@
           <h3>Или напишите напрямую</h3>
           <p>Удобнее написать сразу — тоже отлично.</p>
           <div class="contact-methods">
-            <a href="https://t.me/username" class="contact-method">
-              <div class="method-icon">✈️</div>
-              <div>
-                <div class="method-label">Telegram</div>
-                <div class="method-value">@username</div>
-              </div>
-            </a>
             <a href="mailto:margaritka_89@mail.ru" class="contact-method">
               <div class="method-icon">📧</div>
               <div>
@@ -2139,7 +2132,6 @@
         <div class="footer-col">
           <h4>Контакты</h4>
           <div class="footer-links">
-            <a href="https://t.me/username">Telegram</a>
             <a href="mailto:margaritka_89@mail.ru">Email</a>
           </div>
         </div>
@@ -2252,7 +2244,7 @@
         ? parseFloat(el.getAttribute('data-count-float'))
         : parseInt(el.getAttribute('data-count'));
       const suffix = el.closest('.stat-item')?.querySelector('.stat-label')?.textContent.includes('%') ? '%' : (isFloat ? '/5' : '+');
-      const dur = 1400;
+      const dur = 700;
       const step = 16;
       const steps = dur / step;
       let current = 0;
