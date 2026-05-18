@@ -1228,8 +1228,9 @@
       .testimonials-grid{grid-template-columns:1fr}
       .portfolio-grid{grid-template-columns:1fr 1fr}
       .stats-bar{grid-template-columns:1fr 1fr;gap:1rem}
-      .about-grid{grid-template-columns:1fr;gap:2rem}
-      .about-photo-wrap{width:280px;margin:0 auto}
+      .about-grid{grid-template-columns:1fr;gap:2rem;justify-items:center}
+      .about-content{width:100%;justify-self:stretch}
+      .about-photo-wrap{width:280px;justify-self:center}
       .about-photo{aspect-ratio:3/4;max-width:280px;margin:0 auto}
       .about-photo img{object-position:50% 0%}
       .footer-inner{grid-template-columns:1fr;gap:2rem}
@@ -1259,6 +1260,7 @@
       .problem-card p{font-size:0.92rem;line-height:1.6}
       .about-photo-wrap{width:240px}
       .about-photo{aspect-ratio:1/1;max-width:240px;margin:0 auto}
+      .btn{white-space:normal;text-align:center;word-break:break-word}
     }
     /* =============================================
        LOGO SVG
@@ -1358,6 +1360,20 @@
     /* Portfolio mockup brighten on hover */
     .mockup-bg{transition:filter 0.35s ease}
     .portfolio-card:hover .mockup-bg{filter:brightness(1.18) saturate(1.1)}
+
+    /* Float animation for cards on touch devices */
+    @media (pointer: coarse) {
+      .service-card.visible{animation:cardFloat 5s ease-in-out infinite}
+      .service-card:nth-child(2).visible{animation-delay:1.5s}
+      .service-card:nth-child(3).visible{animation-delay:3s}
+      .testimonial-card.visible{animation:cardFloat 6s ease-in-out infinite}
+      .testimonial-card:nth-child(2).visible{animation-delay:2s}
+      .testimonial-card:nth-child(3).visible{animation-delay:4s}
+    }
+    @keyframes cardFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-5px)}
+    }
 
     /* Btn extra glow on hover */
     .btn-primary:hover{
@@ -2719,20 +2735,22 @@
       }, {passive:true});
     })();
 
-    /* ── 3D CARD TILT ── */
-    document.querySelectorAll('.service-card, .testimonial-card, .portfolio-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transition = 'transform 0.06s linear,box-shadow var(--transition),border-color var(--transition)';
-        card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateY(-6px) scale(1.01)`;
+    /* ── 3D CARD TILT (только на устройствах с мышью) ── */
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.querySelectorAll('.service-card, .testimonial-card, .portfolio-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transition = 'transform 0.06s linear,box-shadow var(--transition),border-color var(--transition)';
+          card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateY(-6px) scale(1.01)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = '';
+          card.style.transform = '';
+        });
       });
-      card.addEventListener('mouseleave', () => {
-        card.style.transition = '';
-        card.style.transform = '';
-      });
-    });
+    }
   </script>
 </body>
 </html>
