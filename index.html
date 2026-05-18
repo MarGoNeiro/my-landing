@@ -1375,19 +1375,6 @@
     .mockup-bg{transition:filter 0.35s ease}
     .portfolio-card:hover .mockup-bg{filter:brightness(1.18) saturate(1.1)}
 
-    /* Float animation for cards on touch devices */
-    @media (pointer: coarse) {
-      .service-card.visible{animation:cardFloat 5s ease-in-out infinite}
-      .service-card:nth-child(2).visible{animation-delay:1.5s}
-      .service-card:nth-child(3).visible{animation-delay:3s}
-      .testimonial-card.visible{animation:cardFloat 6s ease-in-out infinite}
-      .testimonial-card:nth-child(2).visible{animation-delay:2s}
-      .testimonial-card:nth-child(3).visible{animation-delay:4s}
-    }
-    @keyframes cardFloat{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-5px)}
-    }
 
     /* Btn extra glow on hover */
     .btn-primary:hover{
@@ -1499,9 +1486,9 @@
     <div class="hero-inner">
       <div class="hero-tag">AI · Нейросети · Владивосток</div>
       <h1 class="hero-title">
-        Лучший сотрудник<br>вашего бизнеса<br><em>ещё не нанят</em>
+        Превращаю идею<br>в рабочий<br><em>цифровой продукт</em>
       </h1>
-      <div class="hero-cursive">Пока вы откладываете — чей-то бизнес уже работает без него</div>
+      <div class="hero-cursive">Сайт, приложение или ИИ-агент — без посредников и лишних затрат</div>
       <div class="hero-body">
       <div class="hero-text">
         <p class="hero-sub">
@@ -1513,23 +1500,23 @@
           <a href="#contact" class="btn btn-primary btn-primary-hero">Обсудить проект →</a>
           <a href="#portfolio" class="btn btn-ghost">Посмотреть работы ↓</a>
         </div>
-        <p class="hero-microcopy">Бесплатно · Без обязательств · Отвечу за 24 часа</p>
+        <p class="hero-microcopy">Без обязательств · Отвечу за 24 часа</p>
         <div class="hero-stats">
           <div class="stat-item">
-            <span class="stat-num accent" data-count="37">0</span>
+            <span class="stat-num accent">5+</span>
             <div class="stat-label">завершённых<br>проектов</div>
           </div>
           <div class="stat-item">
-            <span class="stat-num" data-count-float="4.8">0</span>
-            <div class="stat-label">оценка<br>клиентов</div>
+            <span class="stat-num">24ч</span>
+            <div class="stat-label">время<br>ответа</div>
           </div>
           <div class="stat-item">
             <span class="stat-num">3 нед</span>
             <div class="stat-label">средний срок<br>запуска</div>
           </div>
           <div class="stat-item">
-            <span class="stat-num" data-count="80">0</span>
-            <div class="stat-label">% клиентов<br>возвращаются</div>
+            <span class="stat-num">100%</span>
+            <div class="stat-label">проектов<br>сдано в срок</div>
           </div>
         </div>
       </div><!-- /hero-text -->
@@ -1736,7 +1723,7 @@
               <span>На связи каждый день, отвечаю в течение часа</span>
             </div>
           </div>
-          <a href="#contact" class="btn btn-primary">Оставить заявку на разбор задачи →</a>
+          <a href="#contact" class="btn btn-primary">Получить консультацию →</a>
         </div>
       </div>
     </div>
@@ -1762,7 +1749,7 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Лендинг косметического салона</div>
             <div class="portfolio-desc">Страница с онлайн-записью и каталогом услуг — клиент выбирает мастера и записывается за минуту.</div>
-            <div class="portfolio-result">+340% заявок за 2 месяца после запуска</div>
+            <div class="portfolio-result">Рост онлайн-записей с первых недель после запуска</div>
           </div>
         </div>
 
@@ -1775,7 +1762,7 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Нейропродавец в Telegram</div>
             <div class="portfolio-desc">Автоматическая обработка заявок и ответы на вопросы клиентов круглосуточно.</div>
-            <div class="portfolio-result">200+ заявок в день без менеджера</div>
+            <div class="portfolio-result">Автоматическая обработка обращений 24/7 без участия менеджера</div>
           </div>
         </div>
 
@@ -1788,7 +1775,7 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Финансовая аналитика для бизнеса</div>
             <div class="portfolio-desc">Дашборд с отчётами, прогнозами и контролем бюджета в реальном времени.</div>
-            <div class="portfolio-result">Запись клиента: с 8 минут до 40 секунд</div>
+            <div class="portfolio-result">Онлайн-запись вместо звонков — клиент сам выбирает удобное время</div>
           </div>
         </div>
 
