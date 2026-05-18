@@ -2666,7 +2666,7 @@
         cx.shadowBlur = 0;
 
         /* Спавн импульсов */
-        if (pulses.length < 5 && ts - lastSpawn > 800 + Math.random() * 1400) {
+        if (pulses.length < 1 && ts - lastSpawn > 15000 + Math.random() * 10000) {
           spawnPulse();
           lastSpawn = ts;
         }
