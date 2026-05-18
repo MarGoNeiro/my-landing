@@ -1256,7 +1256,7 @@
         z-index:0;
       }
       .process-step{position:relative;z-index:1}
-      .step-icon{background:var(--bg);border-radius:50%;}
+      .step-icon{background:rgba(5,150,105,0.06);border-radius:50%;border:1px solid rgba(6,182,212,0.12);}
       .stats-bar{grid-template-columns:1fr 1fr}
       .hero-sub{text-align:center;max-width:100%}
       .hero-buttons{justify-content:center}
@@ -2731,23 +2731,25 @@
       window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 200); });
     })();
 
-    /* ── ABOUT PHOTO PARALLAX ── */
-    (function(){
-      const wrap = document.querySelector('.about-photo-wrap');
-      if(!wrap) return;
-      let ticking = false;
-      window.addEventListener('scroll', function(){
-        if(ticking) return;
-        ticking = true;
-        requestAnimationFrame(function(){
-          const rect = wrap.getBoundingClientRect();
-          const center = rect.top + rect.height / 2;
-          const offset = (window.innerHeight / 2 - center) * 0.12;
-          wrap.style.transform = 'translateY(' + offset + 'px)';
-          ticking = false;
-        });
-      }, {passive:true});
-    })();
+    /* ── ABOUT PHOTO PARALLAX (только десктоп) ── */
+    if (window.matchMedia('(pointer: fine)').matches) {
+      (function(){
+        const wrap = document.querySelector('.about-photo-wrap');
+        if(!wrap) return;
+        let ticking = false;
+        window.addEventListener('scroll', function(){
+          if(ticking) return;
+          ticking = true;
+          requestAnimationFrame(function(){
+            const rect = wrap.getBoundingClientRect();
+            const center = rect.top + rect.height / 2;
+            const offset = (window.innerHeight / 2 - center) * 0.12;
+            wrap.style.transform = 'translateY(' + offset + 'px)';
+            ticking = false;
+          });
+        }, {passive:true});
+      })();
+    }
 
     /* ── 3D CARD TILT (только на устройствах с мышью) ── */
     if (window.matchMedia('(pointer: fine)').matches) {
