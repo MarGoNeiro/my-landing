@@ -738,8 +738,12 @@
     .stats-bar{
       display:grid;grid-template-columns:repeat(4,1fr);
       gap:1.5rem;
-      background:var(--surface);border:1px solid var(--border);
-      border-radius:var(--radius-lg);padding:2rem;
+      background:rgba(139,92,246,0.08);
+      border:1px solid rgba(139,92,246,0.22);
+      border-radius:var(--radius-lg);padding:1.75rem 2rem;
+      backdrop-filter:blur(12px);
+      box-shadow:0 8px 32px rgba(139,92,246,0.08);
+      max-width:780px;margin:0 auto;
     }
     .stats-bar-item{text-align:center}
     .stats-bar-num{
@@ -883,28 +887,34 @@
       margin-bottom:2rem;
     }
     .process-steps::before{
-      content:'';position:absolute;top:1.5rem;left:10%;right:10%;
-      height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent-2),transparent);
-      z-index:0;
+      content:'';position:absolute;top:2rem;left:10%;right:10%;
+      height:1px;z-index:0;
+      background:linear-gradient(90deg,transparent,var(--accent),var(--accent-2),var(--accent),transparent);
+      background-size:200% 100%;
+      animation:lineFlow 4s linear infinite;
     }
+    @keyframes lineFlow{0%{background-position:100% 0}100%{background-position:-100% 0}}
     .process-step{
       display:flex;flex-direction:column;align-items:center;
       text-align:center;padding:0 0.5rem;position:relative;z-index:1;
     }
-    .step-num{
-      width:48px;height:48px;border-radius:50%;
-      background:var(--surface-2);border:2px solid var(--accent);
+    .step-icon{
+      width:64px;height:64px;flex-shrink:0;
       display:flex;align-items:center;justify-content:center;
-      font-family:var(--font-mono);font-size:0.85rem;font-weight:700;color:var(--accent);
-      margin-bottom:1rem;position:relative;
+      margin-bottom:1rem;
     }
-    .step-num::after{
-      content:'';position:absolute;inset:-4px;border-radius:50%;
-      background:rgba(5,150,105,0.1);
+    .step-icon svg{width:36px;height:36px;animation:iconGlow 3s ease-in-out infinite;}
+    .process-step:nth-child(1) .step-icon svg{color:#06b6d4;animation-delay:0s;}
+    .process-step:nth-child(2) .step-icon svg{color:#059669;animation-delay:0.6s;}
+    .process-step:nth-child(3) .step-icon svg{color:#8b5cf6;animation-delay:1.2s;}
+    .process-step:nth-child(4) .step-icon svg{color:#f59e0b;animation-delay:1.8s;}
+    .process-step:nth-child(5) .step-icon svg{color:#06b6d4;animation-delay:2.4s;}
+    @keyframes iconGlow{
+      0%,100%{filter:drop-shadow(0 0 5px currentColor) drop-shadow(0 0 14px currentColor);}
+      50%{filter:drop-shadow(0 0 12px currentColor) drop-shadow(0 0 36px currentColor) drop-shadow(0 0 60px currentColor);}
     }
-    .step-title{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+    .step-title{font-size:1rem;font-weight:600;color:#bfdbfe;margin-bottom:0.5rem}
     .step-desc{font-size:0.9rem;color:var(--text-muted);line-height:1.5}
-    .step-role{font-size:0.82rem;color:var(--text-subtle);margin-top:0.5rem;font-style:italic}
     .process-timing{
       text-align:center;padding:1.25rem;
       background:rgba(5,150,105,0.06);border:1px solid rgba(5,150,105,0.15);
@@ -919,11 +929,12 @@
     .faq{background:transparent}
     .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:0.5rem}
     .faq-item{
-      background:var(--surface);border:1px solid var(--border);
+      background:rgba(7,18,48,0.55);border:1px solid rgba(6,182,212,0.16);
       border-radius:var(--radius-sm);overflow:hidden;
+      backdrop-filter:blur(12px);
       transition:border-color var(--transition);
     }
-    .faq-item.open{border-color:rgba(5,150,105,0.3)}
+    .faq-item.open{border-color:rgba(6,182,212,0.4)}
     .faq-question{
       width:100%;padding:1.25rem 1.5rem;
       display:flex;align-items:center;justify-content:space-between;
@@ -959,7 +970,7 @@
     }
     .price-item:last-child{border:none}
     .price-name{color:var(--text)}
-    .price-val{color:var(--accent);font-weight:600;font-family:var(--font-mono);font-size:0.95rem}
+    .price-val{color:#34d399;font-weight:600;font-family:var(--font-cormorant);font-size:1.35rem;letter-spacing:0.02em;text-shadow:0 0 20px rgba(52,211,153,0.4)}
 
     /* =============================================
        CONTACT
@@ -1192,7 +1203,7 @@
       .process-steps{grid-template-columns:1fr 1fr;gap:2rem}
       .process-steps::before{display:none}
       .process-step{align-items:flex-start;text-align:left;flex-direction:row;gap:1rem}
-      .step-num{flex-shrink:0}
+      .step-icon{flex-shrink:0;margin-bottom:0}
       .contact-grid{grid-template-columns:1fr;gap:2.5rem}
       .footer-inner{grid-template-columns:1fr 1fr}
     }
@@ -1618,6 +1629,52 @@
     </div>
   </section>
 
+  <!-- ============ ABOUT ============ -->
+  <section class="about section" id="about" style="position:relative;overflow:hidden">
+    <div class="section-nebula sn-about"></div>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal-left">
+          <div class="about-photo">
+            <div class="about-photo-inner">
+              <img src="Я.jpeg" alt="Маргарита" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            </div>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <div class="section-label" style="margin-bottom:1rem">Обо мне</div>
+          <h2 style="margin-bottom:1.25rem">Привет, я <span class="gradient-text">Маргарита</span></h2>
+          <p class="about-text">
+            Помогаю бизнесу и стартапам превращать идеи в работающие цифровые продукты с 2020 года. Большинство специалистов умеют что-то одно: сайты, или приложения, или ИИ. Я работаю на всех трёх слоях одновременно — и это значит, что вы получаете цельный продукт без потерь при передаче между командами.
+          </p>
+          <p class="about-text">
+            Мне важно, чтобы то, что я делаю, реально работало для бизнеса. Не просто красиво выглядело — а приносило заявки, экономило время, автоматизировало рутину.
+          </p>
+          <div class="about-facts">
+            <div class="fact-item">
+              <span class="fact-icon">📍</span>
+              <span>Работаю удалённо, клиенты по всей России</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">⚡</span>
+              <span>Средний срок запуска — 3 недели</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">🔄</span>
+              <span>80% клиентов возвращаются за вторым проектом</span>
+            </div>
+            <div class="fact-item">
+              <span class="fact-icon">💬</span>
+              <span>На связи каждый день, отвечаю в течение часа</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Оставить заявку на разбор задачи →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
   <!-- ============ PORTFOLIO ============ -->
   <section class="portfolio section" id="portfolio">
     <div class="container">
@@ -1675,51 +1732,6 @@
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="about section" id="about" style="position:relative;overflow:hidden">
-    <div class="section-nebula sn-about"></div>
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-photo-wrap reveal-left">
-          <div class="about-photo">
-            <div class="about-photo-inner">
-              <img src="Я.jpeg" alt="Маргарита" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
-            </div>
-          </div>
-        </div>
-        <div class="about-content reveal-right">
-          <div class="section-label" style="margin-bottom:1rem">Обо мне</div>
-          <h2 style="margin-bottom:1.25rem">Привет, я <span class="gradient-text">Маргарита</span></h2>
-          <p class="about-text">
-            Помогаю бизнесу и стартапам превращать идеи в работающие цифровые продукты с 2020 года. Большинство специалистов умеют что-то одно: сайты, или приложения, или ИИ. Я работаю на всех трёх слоях одновременно — и это значит, что вы получаете цельный продукт без потерь при передаче между командами.
-          </p>
-          <p class="about-text">
-            Мне важно, чтобы то, что я делаю, реально работало для бизнеса. Не просто красиво выглядело — а приносило заявки, экономило время, автоматизировало рутину.
-          </p>
-          <div class="about-facts">
-            <div class="fact-item">
-              <span class="fact-icon">📍</span>
-              <span>Работаю удалённо, клиенты по всей России</span>
-            </div>
-            <div class="fact-item">
-              <span class="fact-icon">⚡</span>
-              <span>Средний срок запуска — 3 недели</span>
-            </div>
-            <div class="fact-item">
-              <span class="fact-icon">🔄</span>
-              <span>80% клиентов возвращаются за вторым проектом</span>
-            </div>
-            <div class="fact-item">
-              <span class="fact-icon">💬</span>
-              <span>На связи каждый день, отвечаю в течение часа</span>
-            </div>
-          </div>
-          <a href="#contact" class="btn btn-primary">Оставить заявку на разбор задачи →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <div class="rule"></div>
   <!-- ============ TESTIMONIALS ============ -->
   <section class="testimonials section" id="testimonials" style="position:relative;overflow:hidden">
@@ -1773,24 +1785,6 @@
           </div>
         </div>
       </div>
-      <div class="stats-bar reveal">
-        <div class="stats-bar-item">
-          <span class="stats-bar-num" data-count="37">0</span>
-          <div class="stats-bar-label">проектов<br>с 2020 года</div>
-        </div>
-        <div class="stats-bar-item">
-          <span class="stats-bar-num" data-count="80">0</span>
-          <div class="stats-bar-label">% клиентов<br>возвращаются</div>
-        </div>
-        <div class="stats-bar-item">
-          <span class="stats-bar-num" style="color:var(--accent-2)">8 сек</span>
-          <div class="stats-bar-label">среднее время<br>ответа ИИ-агента</div>
-        </div>
-        <div class="stats-bar-item">
-          <span class="stats-bar-num" data-count="34">0</span>
-          <div class="stats-bar-label">% рост конверсии<br>AI-клиента</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1805,48 +1799,74 @@
       </div>
       <div class="process-steps reveal">
         <div class="process-step">
-          <div class="step-num">①</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <circle cx="9" cy="11" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="12" cy="11" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="15" cy="11" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
           <div>
-            <div class="step-title">Созвон-знакомство</div>
-            <div class="step-desc">30 минут бесплатно. Разбираю вашу задачу, рассказываю как вижу решение.</div>
-            <div class="step-role">Ваша роль: рассказать о бизнесе и задаче</div>
+            <div class="step-title">Разбор задачи</div>
+            <div class="step-desc">Отвечаете на несколько вопросов. Разбираю задачу и предлагаю решение.</div>
           </div>
         </div>
         <div class="process-step">
-          <div class="step-num">②</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="13" y2="17"/>
+            </svg>
+          </div>
           <div>
             <div class="step-title">Предложение и договор</div>
             <div class="step-desc">Фиксирую объём, сроки и стоимость. Без скрытых условий и постфактум сюрпризов.</div>
-            <div class="step-role">Ваша роль: подписать и оплатить первый этап</div>
           </div>
         </div>
         <div class="process-step">
-          <div class="step-num">③</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
           <div>
             <div class="step-title">Дизайн и разработка</div>
             <div class="step-desc">Вы видите прогресс каждую неделю. Правки — в процессе, не после сдачи.</div>
-            <div class="step-role">Ваша роль: смотреть и давать обратную связь</div>
           </div>
         </div>
         <div class="process-step">
-          <div class="step-num">④</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2s-5 5-5 11a5 5 0 0 0 10 0C17 7 12 2 12 2z"/>
+              <line x1="9" y1="15" x2="6.5" y2="17.5" stroke-width="1.8"/>
+              <line x1="15" y1="15" x2="17.5" y2="17.5" stroke-width="1.8"/>
+              <circle cx="12" cy="11" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
           <div>
             <div class="step-title">Тест и запуск</div>
             <div class="step-desc">Проверяем всё перед релизом. Запускаем вместе — я на связи в день запуска.</div>
-            <div class="step-role">Ваша роль: финальное одобрение</div>
           </div>
         </div>
         <div class="process-step">
-          <div class="step-num">⑤</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
           <div>
             <div class="step-title">Поддержка</div>
-            <div class="step-desc">После запуска доступен для правок и развития. Не пропадаю после сдачи.</div>
-            <div class="step-role">Ваша роль: пользоваться и присылать идеи</div>
+            <div class="step-desc">После запуска доступна для правок и развития. Не пропадаю после сдачи.</div>
           </div>
         </div>
       </div>
       <div class="process-timing reveal">
-        <strong>От первого звонка до запуска: 3–6 недель</strong> в зависимости от сложности проекта
+        <strong>От первой заявки до запуска: 3–6 недель</strong> в зависимости от сложности проекта
       </div>
     </div>
   </section>
@@ -1870,10 +1890,10 @@
             <div class="faq-answer-inner">
               Зависит от проекта. Ориентиры:
               <div class="price-list">
-                <div class="price-item"><span class="price-name">Лендинг / сайт-визитка</span><span class="price-val">от 60 000 ₽ · 2–3 нед</span></div>
-                <div class="price-item"><span class="price-name">Многостраничный сайт</span><span class="price-val">от 120 000 ₽ · 3–5 нед</span></div>
-                <div class="price-item"><span class="price-name">Веб-приложение</span><span class="price-val">от 200 000 ₽ · 4–8 нед</span></div>
-                <div class="price-item"><span class="price-name">ИИ-агент</span><span class="price-val">от 80 000 ₽ · 2–4 нед</span></div>
+                <div class="price-item"><span class="price-name">Сайт-визитка</span><span class="price-val">от 10 000 ₽</span></div>
+                <div class="price-item"><span class="price-name">Лендинг</span><span class="price-val">от 20 000 ₽</span></div>
+                <div class="price-item"><span class="price-name">Приложение (квиз, калькулятор, мини-апп)</span><span class="price-val">от 15 000 ₽</span></div>
+                <div class="price-item"><span class="price-name">ИИ-агент / Telegram-бот</span><span class="price-val">от 35 000 ₽</span></div>
               </div>
               Точную стоимость называю после короткого брифинга. Всегда называю полную цену до начала работы — без скрытых доплат.
             </div>
@@ -1899,7 +1919,13 @@
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              Лендинг — 2–3 недели. Сайт — 3–5 недель. Приложение — 4–8 недель. ИИ-агент — 2–4 недели. Сроки фиксируются в договоре. Если вижу риск задержки — говорю об этом заранее, не постфактум.
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem;margin-bottom:0.85rem">
+                <div><span style="color:var(--accent-2);font-weight:600">Сайт-визитка</span><br>1–2 недели</div>
+                <div><span style="color:var(--accent-2);font-weight:600">Приложение</span><br>1–3 недели</div>
+                <div><span style="color:var(--accent-2);font-weight:600">Лендинг</span><br>2–3 недели</div>
+                <div><span style="color:var(--accent-2);font-weight:600">ИИ-агент / Telegram-бот</span><br>2–3 недели</div>
+              </div>
+              Сроки фиксируются в договоре. Если вижу риск задержки — говорю об этом заранее, не постфактум.
             </div>
           </div>
         </div>
@@ -1911,7 +1937,7 @@
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              На первом звонке: рассказать о бизнесе и задаче — 30 минут. Для брифа: ответить на 10–15 вопросов письменно — 1–2 часа вашего времени. В процессе: смотреть промежуточные результаты раз в неделю и давать обратную связь. Больше ничего технического не требуется.
+              Для брифа: ответить на 10–15 вопросов — текстом или аудио в Telegram, занимает 20–30 минут. В процессе: смотреть промежуточные результаты раз в неделю и давать обратную связь. Больше ничего технического не требуется.
             </div>
           </div>
         </div>
@@ -2096,8 +2122,8 @@
             </svg>
           </div>
           <p class="footer-tagline">Создаю сайты, приложения и ИИ-агентов. Один специалист — полный результат.</p>
-          <div class="footer-avail">Открыт для новых проектов · Старт с июня 2026</div>
-          <p class="footer-copy" style="margin-top:1rem">© 2026 Цифровой мастер. Все права защищены.</p>
+          <div class="footer-avail">Открыта для новых проектов — давайте создадим что-то крутое</div>
+          <p class="footer-copy" style="margin-top:1rem">© 2026 MargoNeiro. Все права защищены.</p>
         </div>
         <div class="footer-col">
           <h4>Навигация</h4>
@@ -2114,14 +2140,7 @@
           <h4>Контакты</h4>
           <div class="footer-links">
             <a href="https://t.me/username">Telegram</a>
-            <a href="mailto:hello@example.com">Email</a>
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
-          </div>
-          <div class="footer-social">
-            <a href="#" class="social-btn" title="Telegram">✈</a>
-            <a href="#" class="social-btn" title="GitHub">⌥</a>
-            <a href="#" class="social-btn" title="LinkedIn">in</a>
+            <a href="mailto:margaritka_89@mail.ru">Email</a>
           </div>
         </div>
       </div>
