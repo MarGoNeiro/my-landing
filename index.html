@@ -2492,19 +2492,15 @@
       btn.disabled = true;
       const formEl = this;
       const fd = new FormData(this);
-      const projectLabels = {site:'Сайт / Лендинг', app:'Веб-приложение', ai:'ИИ-агент', complex:'Всё вместе', unknown:'Не знаю ещё'};
-      const tgText = [
-        '🔔 <b>Новая заявка с сайта</b>',
-        '',
-        '👤 <b>Имя:</b> ' + fd.get('name'),
-        '📧 <b>Email:</b> ' + fd.get('email'),
-        '🛠 <b>Проект:</b> ' + (projectLabels[fd.get('project')] || 'Не указан'),
-        '💬 <b>Задача:</b> ' + (fd.get('message') || 'Не указана'),
-      ].join('\n');
-      fetch('https://api.telegram.org/bot8930330946:AAFH5s3_UhuT4NQ3_iw3vZu9webSXpJ1xz4/sendMessage', {
+      fetch('/api/send-telegram', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({chat_id: 831311488, text: tgText, parse_mode: 'HTML'})
+        body: JSON.stringify({
+          name: fd.get('name'),
+          email: fd.get('email'),
+          project: fd.get('project'),
+          message: fd.get('message')
+        })
       })
       .then(function(r){ return r.json(); })
       .then(function(r){
