@@ -414,7 +414,8 @@
     .widget-dots span:nth-child(2){background:#febc2e}
     .widget-dots span:nth-child(3){background:#28c840}
     .widget-title{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);flex:1;text-align:center}
-    .widget-body{padding:1rem 1.25rem;height:230px;overflow:hidden;display:flex;flex-direction:column}
+    .widget-body{padding:1rem 1.25rem;height:280px;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;scrollbar-width:none}
+    .widget-body::-webkit-scrollbar{display:none}
     .chat-msg{display:flex;flex-direction:column;gap:0.85rem;flex:1;transition:opacity 0.4s ease}
     .chat-msg.fading{opacity:0}
     .seq-line{transition:opacity 0.2s ease}
@@ -2403,6 +2404,7 @@
         }
         const text = set[lineIdx];
         seqLines[lineIdx].style.opacity = '1';
+        chatEl2.parentElement.scrollTop = chatEl2.parentElement.scrollHeight;
         seqCurs.forEach(c => c.classList.remove('active'));
         seqCurs[lineIdx].classList.add('active');
 
