@@ -825,6 +825,51 @@
       text-align:center;margin-top:2.5rem;
     }
     .portfolio-cta p{color:var(--text-muted);margin-bottom:1rem}
+    .portfolio-card[data-gallery]{cursor:zoom-in;}
+
+    /* ── PORTFOLIO GALLERY MODAL ── */
+    .gallery-modal{
+      position:fixed;inset:0;z-index:9500;display:none;
+      align-items:center;justify-content:center;
+      background:rgba(6,8,14,0.88);backdrop-filter:blur(8px);
+      padding:1.5rem;
+    }
+    .gallery-modal.open{display:flex;}
+    .gallery-box{
+      position:relative;width:auto;max-width:min(94vw,520px);
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius-lg);overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,0.5);
+    }
+    .gallery-close{
+      position:absolute;top:0.6rem;right:0.6rem;z-index:2;
+      width:2.25rem;height:2.25rem;border-radius:50%;
+      background:rgba(10,10,15,0.65);border:1px solid var(--border);
+      color:var(--text);font-size:1.1rem;line-height:1;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+    }
+    .gallery-close:hover{background:var(--accent);border-color:var(--accent);}
+    .gallery-frame{position:relative;background:#000;display:flex;justify-content:center;}
+    .gallery-frame img{
+      display:block;width:auto;height:auto;max-width:100%;max-height:min(84vh,900px);object-fit:contain;
+    }
+    .gallery-nav{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:2.25rem;height:2.25rem;border-radius:50%;
+      background:rgba(10,10,15,0.6);border:1px solid var(--border);
+      color:var(--text);font-size:1.1rem;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+    }
+    .gallery-nav:hover{background:var(--accent);border-color:var(--accent);}
+    .gallery-prev{left:0.6rem;}
+    .gallery-next{right:0.6rem;}
+    .gallery-footer{
+      padding:0.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;
+    }
+    .gallery-caption{font-size:0.82rem;color:var(--text-muted);}
+    .gallery-dots{display:flex;gap:0.4rem;}
+    .gallery-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:background var(--transition);}
+    .gallery-dot.active{background:var(--accent);}
 
     /* =============================================
        ABOUT
@@ -1773,16 +1818,16 @@
           </div>
         </div>
 
-        <div class="portfolio-card reveal reveal-delay-3" data-type="app">
+        <div class="portfolio-card reveal reveal-delay-3" data-type="app" data-gallery="voice-app">
           <div class="portfolio-top">
             <div class="portfolio-nebula"></div>
             <div class="portfolio-overlay"></div>
             <span class="portfolio-type">Приложение</span>
           </div>
           <div class="portfolio-body">
-            <div class="portfolio-title">Финансовая аналитика для бизнеса</div>
-            <div class="portfolio-desc">Дашборд с отчётами, прогнозами и контролем бюджета в реальном времени</div>
-            <div class="portfolio-result">Онлайн-запись вместо звонков — клиент сам выбирает удобное время</div>
+            <div class="portfolio-title">Пять секунд на задачу</div>
+            <div class="portfolio-desc">Идёшь, вспомнил, сказал вслух — готово. Сам отмечаешь, что важно, а что срочно, а дальше приложение уже не даёт забыть: напоминает столько раз, сколько нужно именно этому делу</div>
+            <div class="portfolio-result">Ни одна задача не теряется в заметках и переписках</div>
           </div>
         </div>
 
@@ -1793,6 +1838,21 @@
       </div>
     </div>
   </section>
+
+  <div class="gallery-modal" id="galleryModal">
+    <div class="gallery-box">
+      <button class="gallery-close" id="galleryClose" aria-label="Закрыть">✕</button>
+      <div class="gallery-frame">
+        <img id="galleryImg" src="" alt="">
+        <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Предыдущий">‹</button>
+        <button class="gallery-nav gallery-next" id="galleryNext" aria-label="Следующий">›</button>
+      </div>
+      <div class="gallery-footer">
+        <span class="gallery-caption" id="galleryCaption"></span>
+        <div class="gallery-dots" id="galleryDots"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="rule"></div>
   <!-- ============ TESTIMONIALS ============ -->
@@ -2433,6 +2493,72 @@
         chatEl2.classList.remove('fading');
         runSet(chatSets[setIdx]);
       }, 400);
+    });
+
+    /* ── PORTFOLIO GALLERY ── */
+    const galleries = {
+      'voice-app': {
+        images: [
+          { src: 'IMG_20260720_185346.png', caption: 'Голосовой ввод и матрица задач' },
+          { src: 'IMG_20260720_185354.png', caption: 'Своя частота напоминаний для каждой категории' },
+          { src: 'IMG_20260720_185356.png', caption: 'Тихий режим по расписанию' }
+        ]
+      }
+    };
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryImg = document.getElementById('galleryImg');
+    const galleryCaption = document.getElementById('galleryCaption');
+    const galleryDots = document.getElementById('galleryDots');
+    let galleryImages = [];
+    let galleryIdx = 0;
+
+    function renderGallerySlide(){
+      const item = galleryImages[galleryIdx];
+      galleryImg.src = item.src;
+      galleryImg.alt = item.caption;
+      galleryCaption.textContent = item.caption;
+      galleryDots.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === galleryIdx);
+      });
+    }
+    function openGallery(key){
+      const gallery = galleries[key];
+      if (!gallery) return;
+      galleryImages = gallery.images;
+      galleryIdx = 0;
+      galleryDots.innerHTML = '';
+      galleryImages.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.className = 'gallery-dot';
+        dot.addEventListener('click', () => { galleryIdx = i; renderGallerySlide(); });
+        galleryDots.appendChild(dot);
+      });
+      renderGallerySlide();
+      galleryModal.classList.add('open');
+    }
+    function closeGallery(){
+      galleryModal.classList.remove('open');
+    }
+    document.querySelectorAll('.portfolio-card[data-gallery]').forEach(card => {
+      card.addEventListener('click', () => openGallery(card.dataset.gallery));
+    });
+    document.getElementById('galleryClose').addEventListener('click', closeGallery);
+    document.getElementById('galleryPrev').addEventListener('click', () => {
+      galleryIdx = (galleryIdx - 1 + galleryImages.length) % galleryImages.length;
+      renderGallerySlide();
+    });
+    document.getElementById('galleryNext').addEventListener('click', () => {
+      galleryIdx = (galleryIdx + 1) % galleryImages.length;
+      renderGallerySlide();
+    });
+    galleryModal.addEventListener('click', (e) => {
+      if (e.target === galleryModal) closeGallery();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!galleryModal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowLeft') document.getElementById('galleryPrev').click();
+      if (e.key === 'ArrowRight') document.getElementById('galleryNext').click();
     });
 
     /* ── PORTFOLIO FILTER ── */
