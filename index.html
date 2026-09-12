@@ -821,6 +821,12 @@
     .portfolio-title{font-family:var(--font-heading);font-size:1.08rem;color:var(--text);margin-bottom:0.5rem;line-height:1.35;text-align:center;}
     .portfolio-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.65;margin-bottom:0.75rem;text-align:center;hyphens:none;}
     .portfolio-result{font-family:var(--font-mono);font-size:0.75rem;color:#34d399;border-left:2px solid #059669;padding-left:0.6rem;}
+    .portfolio-link{
+      display:inline-flex;align-items:center;gap:0.4rem;justify-content:center;width:100%;
+      font-size:0.95rem;font-weight:600;color:var(--accent);
+      transition:gap var(--transition);
+    }
+    .portfolio-link:hover{gap:0.7rem;color:var(--accent)}
     .portfolio-cta{
       text-align:center;margin-top:2.5rem;
     }
@@ -1801,7 +1807,6 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Лендинг косметического салона</div>
             <div class="portfolio-desc">Страница с онлайн-записью и каталогом услуг — клиент выбирает мастера и записывается за минуту</div>
-            <div class="portfolio-result">Рост онлайн-записей с первых недель после запуска</div>
           </div>
         </div>
 
@@ -1814,7 +1819,6 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Нейропродавец в Telegram</div>
             <div class="portfolio-desc">Автоматическая обработка заявок и ответы на вопросы клиентов круглосуточно</div>
-            <div class="portfolio-result">Автоматическая обработка обращений 24/7 без участия менеджера</div>
           </div>
         </div>
 
@@ -1827,7 +1831,19 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Пять секунд на задачу</div>
             <div class="portfolio-desc">Идёшь, вспомнил, сказал вслух — готово. Сам отмечаешь, что важно, а что срочно, а дальше приложение уже не даёт забыть: напоминает столько раз, сколько нужно именно этому делу</div>
-            <div class="portfolio-result">Ни одна задача не теряется в заметках и переписках</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-4" data-type="app">
+          <div class="portfolio-top">
+            <div class="portfolio-nebula"></div>
+            <div class="portfolio-overlay"></div>
+            <span class="portfolio-type">Приложение</span>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-title">Юнит-экономика для Wildberries и Ozon</div>
+            <div class="portfolio-desc">Четыре бесплатных инструмента для продавцов маркетплейсов: расчёт реальной прибыли с продажи (комиссия, логистика, налог — по официальной структуре и сверено с реальными расчётами продавцов), голосовой учёт себестоимости партии, калькулятор поставки, который предупреждает о дефиците раньше, чем закончится товар на складе</div>
+            <a href="https://unit-economy-olive.vercel.app" class="portfolio-link" target="_blank" rel="noopener">Попробовать бесплатно →</a>
           </div>
         </div>
 
