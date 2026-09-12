@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "WebFetch"
+      "WebFetch",
+      "Bash(git commit -m ' *)",
+      "Bash(ls *.jpeg *.jpg)",
+      "Bash(dir *.jpeg *.jpg)",
+      "Bash(git commit *)",
+      "Bash(vercel --version)",
+      "Bash(git remote *)",
+      "Bash(curl -s -X POST https://margo-lab-ai.vercel.app/api/send-telegram -H \"Content-Type: application/json\" -d \"{\\\\\"name\\\\\":\\\\\"Тест\\\\\",\\\\\"email\\\\\":\\\\\"test@test.com\\\\\",\\\\\"project\\\\\":\\\\\"website\\\\\",\\\\\"message\\\\\":\\\\\"Проверка формы\\\\\"}\")"
     ]
   }
 }

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Портфолио — варианты карточек</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Lora:ital,wght@0,400;1,400&family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #0a0a0f; font-family: 'Lora', serif; color: #f1f5f9; }
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 60% at 12% 50%, rgba(5,150,105,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 88% 28%, rgba(6,182,212,0.12) 0%, transparent 58%);
+}
+.wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(5,5,7,0.92); backdrop-filter: blur(14px); display: flex; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav a { padding: 0.8rem 1.2rem; font-family: monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #475569; text-decoration: none; border-right: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; }
+.nav a:hover { color: #94a3b8; }
+.section-intro { margin-bottom: 2rem; }
+.label { font-family: monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: #059669; border: 1px solid rgba(5,150,105,0.3); padding: 0.3rem 0.9rem; border-radius: 20px; display: inline-block; margin-bottom: 0.75rem; }
+.title { font-family: 'Philosopher', serif; font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #f0f9ff 10%, #7dd3fc 55%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.25rem; }
+.desc { color: #64748b; font-size: 0.8rem; font-family: monospace; }
+.divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 4rem 0; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.type-badge { font-family: monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 20px; display: inline-block; }
+.badge-site { background: rgba(5,150,105,0.12); color: #34d399; border: 1px solid rgba(5,150,105,0.25); }
+.badge-app  { background: rgba(6,182,212,0.12); color: #67e8f9; border: 1px solid rgba(6,182,212,0.25); }
+.badge-ai   { background: rgba(139,92,246,0.12); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.25); }
+
+/* ════════════════════════════════════
+   ВАРИАНТ А — Туманность + эмоджи
+════════════════════════════════════ */
+.va-card {
+  border-radius: 14px; overflow: hidden;
+  background: rgba(7,18,48,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.va-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,10,40,0.4); }
+.va-top {
+  height: 140px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.va-nebula {
+  position: absolute; inset: 0;
+  background-image: url('nebula.jpeg');
+  background-size: cover; background-position: center;
+  mix-blend-mode: screen; opacity: 0.35;
+}
+.va-top-overlay {
+  position: absolute; inset: 0;
+}
+.va-top.site .va-top-overlay { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(5,150,105,0.35) 0%, rgba(7,18,48,0.8) 75%); }
+.va-top.app  .va-top-overlay { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(6,182,212,0.3) 0%, rgba(7,18,48,0.8) 75%); }
+.va-top.ai   .va-top-overlay { background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(139,92,246,0.3) 0%, rgba(7,18,48,0.8) 75%); }
+.va-type-name {
+  position: relative; z-index: 1;
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: clamp(1.4rem, 2.8vw, 2.6rem); letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.va-top.site .va-type-name { color: rgba(52,211,153,0.85); text-shadow: 0 0 40px rgba(5,150,105,0.6), 0 0 80px rgba(5,150,105,0.2); }
+.va-top.app  .va-type-name { color: rgba(103,232,249,0.85); text-shadow: 0 0 40px rgba(6,182,212,0.6), 0 0 80px rgba(6,182,212,0.2); }
+.va-top.ai   .va-type-name { color: rgba(196,181,253,0.85); text-shadow: 0 0 40px rgba(139,92,246,0.6), 0 0 80px rgba(139,92,246,0.2); }
+.va-body { padding: 1.25rem 1.4rem; }
+.va-title { font-family: 'Philosopher', serif; font-size: 1.08rem; color: #e2e8f0; margin-bottom: 0.5rem; line-height: 1.35; text-align: center; }
+.va-desc { font-size: 0.88rem; color: #64748b; line-height: 1.65; margin-bottom: 0.75rem; text-align: justify; hyphens: auto; }
+.va-result { font-family: monospace; font-size: 0.75rem; color: #34d399; border-left: 2px solid #059669; padding-left: 0.6rem; }
+
+/* ════════════════════════════════════
+   ВАРИАНТ Б — Диагональ + глиф
+════════════════════════════════════ */
+.vb-card {
+  position: relative; overflow: hidden;
+  background: rgba(7,18,48,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 88% 100%, 0 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 220px;
+}
+.vb-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,10,40,0.4); }
+.vb-glyph {
+  position: absolute; top: -0.5rem; right: 0.5rem;
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 7rem; line-height: 1; pointer-events: none; user-select: none;
+}
+.vb-card.site .vb-glyph { color: rgba(5,150,105,0.08); }
+.vb-card.app  .vb-glyph { color: rgba(6,182,212,0.08); }
+.vb-card.ai   .vb-glyph { color: rgba(139,92,246,0.08); }
+.vb-card.site { border-top: 2px solid rgba(5,150,105,0.5); }
+.vb-card.app  { border-top: 2px solid rgba(6,182,212,0.5); }
+.vb-card.ai   { border-top: 2px solid rgba(139,92,246,0.5); }
+.vb-content { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+.vb-title { font-family: 'Philosopher', serif; font-size: 1.1rem; color: #e2e8f0; line-height: 1.3; }
+.vb-desc { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+.vb-result { font-family: monospace; font-size: 0.75rem; color: #34d399; border-left: 2px solid #059669; padding-left: 0.6rem; margin-top: 0.25rem; }
+
+/* ════════════════════════════════════
+   ВАРИАНТ В — Крупный результат
+════════════════════════════════════ */
+.vc-card {
+  position: relative; overflow: hidden;
+  background: rgba(7,18,48,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: none;
+  backdrop-filter: blur(12px);
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.vc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+}
+.vc-card.site::before { background: linear-gradient(to bottom, rgba(5,150,105,0.9), rgba(5,150,105,0.1)); }
+.vc-card.app::before  { background: linear-gradient(to bottom, rgba(6,182,212,0.9), rgba(6,182,212,0.1)); }
+.vc-card.ai::before   { background: linear-gradient(to bottom, rgba(139,92,246,0.9), rgba(139,92,246,0.1)); }
+.vc-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,10,40,0.4); }
+.vc-metric {
+  font-family: 'Cormorant Garamond', serif; font-weight: 300;
+  font-size: 3.8rem; line-height: 1; margin-bottom: 0.25rem;
+}
+.vc-card.site .vc-metric { color: rgba(52,211,153,0.75); }
+.vc-card.app  .vc-metric { color: rgba(103,232,249,0.75); }
+.vc-card.ai   .vc-metric { color: rgba(196,181,253,0.75); }
+.vc-metric-label { font-family: monospace; font-size: 0.7rem; color: #475569; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.vc-title { font-family: 'Philosopher', serif; font-size: 1.05rem; color: #e2e8f0; margin-bottom: 0.4rem; line-height: 1.3; }
+.vc-desc { font-size: 0.85rem; color: #64748b; line-height: 1.6; }
+
+/* ════════════════════════════════════
+   ВАРИАНТ Г — Минимализм без фото
+════════════════════════════════════ */
+.vg-card {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.vg-card:hover { background: rgba(7,18,48,0.4); border-color: rgba(255,255,255,0.12); }
+.vg-title { font-family: 'Philosopher', serif; font-size: 1.25rem; color: #f1f5f9; line-height: 1.3; }
+.vg-desc { font-size: 0.9rem; color: #64748b; line-height: 1.65; flex: 1; }
+.vg-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.vg-result { font-family: monospace; font-size: 0.75rem; color: #34d399; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#va">А — Туманность</a>
+  <a href="#vb">Б — Диагональ</a>
+  <a href="#vc">В — Результат</a>
+  <a href="#vg">Г — Минимализм</a>
+</nav>
+
+<!-- ВАРИАНТ А -->
+<div class="wrapper" id="va">
+  <div class="section-intro">
+    <div class="label">Вариант А</div>
+    <div class="title">Туманность + эмоджи сверху</div>
+    <div class="desc">Верхняя часть — цветная зона с туманностью и иконкой типа проекта</div>
+  </div>
+  <div class="grid">
+    <div class="va-card">
+      <div class="va-top site">
+        <div class="va-nebula"></div>
+        <div class="va-top-overlay"></div>
+        <span class="va-type-name">Сайт</span>
+      </div>
+      <div class="va-body">
+        <div class="va-title">Лендинг косметического салона</div>
+        <div class="va-desc">Продающая страница с онлайн-записью и каталогом услуг</div>
+        <div class="va-result">+340% заявок за 2 месяца</div>
+      </div>
+    </div>
+    <div class="va-card">
+      <div class="va-top ai">
+        <div class="va-nebula"></div>
+        <div class="va-top-overlay"></div>
+        <span class="va-type-name">ИИ‑агент</span>
+      </div>
+      <div class="va-body">
+        <div class="va-title">Нейропродавец в Telegram</div>
+        <div class="va-desc">Автоматическая обработка заявок и ответы на вопросы 24/7</div>
+        <div class="va-result">200+ заявок в день без менеджера</div>
+      </div>
+    </div>
+    <div class="va-card">
+      <div class="va-top app">
+        <div class="va-nebula"></div>
+        <div class="va-top-overlay"></div>
+        <span class="va-type-name">Приложение</span>
+      </div>
+      <div class="va-body">
+        <div class="va-title">Финансовая аналитика для бизнеса</div>
+        <div class="va-desc">Дашборд с отчётами, прогнозами и контролем бюджета</div>
+        <div class="va-result">Запись клиента: с 8 мин до 40 сек</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ВАРИАНТ Б -->
+<div class="wrapper" id="vb">
+  <div class="section-intro">
+    <div class="label">Вариант Б</div>
+    <div class="title">Диагональный срез + глиф</div>
+    <div class="desc">Угол срезан по диагонали · полупрозрачная буква на фоне</div>
+  </div>
+  <div class="grid">
+    <div class="vb-card site">
+      <div class="vb-glyph">С</div>
+      <div class="vb-content">
+        <div class="type-badge badge-site">Сайт</div>
+        <div class="vb-title">Лендинг косметического салона</div>
+        <div class="vb-desc">Продающая страница с онлайн-записью и каталогом услуг</div>
+        <div class="vb-result">+340% заявок за 2 месяца</div>
+      </div>
+    </div>
+    <div class="vb-card app">
+      <div class="vb-glyph">П</div>
+      <div class="vb-content">
+        <div class="type-badge badge-app">Приложение</div>
+        <div class="vb-title">Финансовая аналитика для бизнеса</div>
+        <div class="vb-desc">Дашборд с отчётами, прогнозами и контролем бюджета</div>
+        <div class="vb-result">Запись клиента: с 8 мин до 40 сек</div>
+      </div>
+    </div>
+    <div class="vb-card ai">
+      <div class="vb-glyph">А</div>
+      <div class="vb-content">
+        <div class="type-badge badge-ai">ИИ-агент</div>
+        <div class="vb-title">Нейропродавец в Telegram</div>
+        <div class="vb-desc">Автоматическая обработка заявок и ответы на вопросы 24/7</div>
+        <div class="vb-result">200+ заявок в день без менеджера</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ВАРИАНТ В -->
+<div class="wrapper" id="vc">
+  <div class="section-intro">
+    <div class="label">Вариант В</div>
+    <div class="title">Крупный результат на первом плане</div>
+    <div class="desc">Главная цифра доминирует · вертикальная цветная полоса слева</div>
+  </div>
+  <div class="grid">
+    <div class="vc-card site">
+      <div class="vc-metric">+340%</div>
+      <div class="vc-metric-label">заявок за 2 месяца</div>
+      <div class="type-badge badge-site" style="margin-bottom:0.5rem">Сайт</div>
+      <div class="vc-title">Лендинг косметического салона</div>
+      <div class="vc-desc">Продающая страница с онлайн-записью и каталогом услуг</div>
+    </div>
+    <div class="vc-card app">
+      <div class="vc-metric">40 сек</div>
+      <div class="vc-metric-label">время записи клиента (было 8 мин)</div>
+      <div class="type-badge badge-app" style="margin-bottom:0.5rem">Приложение</div>
+      <div class="vc-title">Финансовая аналитика для бизнеса</div>
+      <div class="vc-desc">Дашборд с отчётами, прогнозами и контролем бюджета</div>
+    </div>
+    <div class="vc-card ai">
+      <div class="vc-metric">200+</div>
+      <div class="vc-metric-label">заявок в день без менеджера</div>
+      <div class="type-badge badge-ai" style="margin-bottom:0.5rem">ИИ-агент</div>
+      <div class="vc-title">Нейропродавец в Telegram</div>
+      <div class="vc-desc">Автоматическая обработка заявок и ответы на вопросы 24/7</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ВАРИАНТ Г -->
+<div class="wrapper" id="vg">
+  <div class="section-intro">
+    <div class="label">Вариант Г</div>
+    <div class="title">Минимализм — только текст</div>
+    <div class="desc">Никаких изображений · чисто · фокус на содержании</div>
+  </div>
+  <div class="grid">
+    <div class="vg-card">
+      <div class="type-badge badge-site">Сайт</div>
+      <div class="vg-title">Лендинг косметического салона</div>
+      <div class="vg-desc">Продающая страница с онлайн-записью и каталогом услуг. Адаптивный дизайн, SEO-оптимизация, интеграция с CRM.</div>
+      <div class="vg-footer">
+        <div class="vg-result">+340% заявок за 2 месяца</div>
+      </div>
+    </div>
+    <div class="vg-card">
+      <div class="type-badge badge-app">Приложение</div>
+      <div class="vg-title">Финансовая аналитика для бизнеса</div>
+      <div class="vg-desc">Дашборд с отчётами, прогнозами и контролем бюджета. Импорт из банков, графики, уведомления.</div>
+      <div class="vg-footer">
+        <div class="vg-result">Запись клиента: с 8 мин до 40 сек</div>
+      </div>
+    </div>
+    <div class="vg-card">
+      <div class="type-badge badge-ai">ИИ-агент</div>
+      <div class="vg-title">Нейропродавец в Telegram</div>
+      <div class="vg-desc">Автоматическая обработка заявок и ответы на вопросы клиентов 24/7 без участия менеджера.</div>
+      <div class="vg-footer">
+        <div class="vg-result">200+ заявок в день без менеджера</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
