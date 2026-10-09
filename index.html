@@ -108,7 +108,7 @@
       60%,100%{left:140%}
     }
     .section-header{text-align:center;margin-bottom:clamp(1.5rem,3vw,2.5rem)}
-    .section-header p{max-width:560px;margin:0.8rem auto 0}
+    .section-header p{max-width:560px;margin:0.8rem auto 0;font-family:var(--font-display);font-style:italic}
 
     /* =============================================
        BUTTONS
@@ -369,6 +369,7 @@
     .hero-title em{font-style:italic;color:var(--accent-2);-webkit-text-fill-color:var(--accent-2);font-weight:700;white-space:nowrap}
     .hero-title .gradient-text{white-space:nowrap}
     .hero-sub{
+      font-family:var(--font-display);font-style:italic;
       font-size:1.15rem;color:#94a3b8;line-height:1.75;
       max-width:500px;margin-bottom:2rem;
     }
@@ -1211,9 +1212,8 @@
 
     /* Hero cursive accent */
     .hero-cursive{
-      font-family:var(--font-allura);font-size:clamp(1.6rem,3vw,2.4rem);
-      color:rgba(203,213,225,0.80);line-height:1;margin-top:-0.5rem;
-      text-shadow:0 1px 10px rgba(0,0,0,0.6);
+      font-family:var(--font-display);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.3rem);
+      color:rgba(203,213,225,0.85);line-height:1.3;letter-spacing:0.01em;margin-top:-0.3rem;
       opacity:0;animation:fadeUp 0.8s 0.6s ease forwards;
     }
     @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
