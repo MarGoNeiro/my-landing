@@ -221,6 +221,8 @@
       position:fixed;inset:0;z-index:999;
       background:rgba(10,10,15,0.97);backdrop-filter:blur(20px);
       display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+      padding:calc(5.5rem + env(safe-area-inset-top,0px)) 1.5rem calc(2rem + env(safe-area-inset-bottom,0px));
+      overflow-y:auto;
       opacity:0;pointer-events:none;transition:opacity 0.3s ease;
     }
     .nav-mobile.open{opacity:1;pointer-events:all}
@@ -821,7 +823,7 @@
     .portfolio-card[data-type="app"]  .portfolio-type{color:rgba(103,232,249,0.88);text-shadow:0 0 40px rgba(6,182,212,0.65),0 0 80px rgba(6,182,212,0.2);}
     .portfolio-type-sm{font-size:clamp(1.1rem,1.8vw,1.6rem);line-height:1.25;white-space:normal;text-align:center}
     .portfolio-body{padding:1.25rem 1.4rem;}
-    .portfolio-title{font-family:var(--font-heading);font-size:1.08rem;color:var(--text);margin-bottom:0.5rem;line-height:1.35;text-align:center;}
+    .portfolio-title{font-family:var(--font-display);font-weight:700;font-size:clamp(1.2rem,4vw,1.4rem);color:var(--text);margin-bottom:0.5rem;line-height:1.3;text-align:center;}
     .portfolio-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.65;margin-bottom:0.75rem;text-align:center;hyphens:none;}
     .portfolio-result{font-family:var(--font-mono);font-size:0.75rem;color:#34d399;border-left:2px solid #059669;padding-left:0.6rem;}
     .portfolio-link{
