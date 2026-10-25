@@ -794,6 +794,8 @@
     .portfolio-grid{
       display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
     }
+    /* Одинокая карточка в последнем ряду — центрируем под средней колонкой */
+    .portfolio-grid .portfolio-card:last-child:nth-child(3n+1){grid-column:2}
     .portfolio-card{
       border-radius:var(--radius);overflow:hidden;
       background:rgba(7,18,48,0.55);border:1px solid rgba(255,255,255,0.07);
@@ -1254,6 +1256,7 @@
       .services-grid{grid-template-columns:1fr}
       .testimonials-grid{grid-template-columns:1fr}
       .portfolio-grid{grid-template-columns:1fr 1fr}
+      .portfolio-grid .portfolio-card:last-child:nth-child(3n+1){grid-column:auto}
       .portfolio-top{height:68px}
       .stats-bar{grid-template-columns:1fr 1fr;gap:1rem}
       .about-grid{grid-template-columns:1fr;gap:2rem;justify-items:center}
@@ -1832,6 +1835,18 @@
           <div class="portfolio-body">
             <div class="portfolio-title">Из таблицы — сразу в готовый документ</div>
             <div class="portfolio-desc">Загружаете несколько таблиц с отчётностью — приложение само собирает из них один документ: Word или Excel, под нужный формат. Печать и ручная сверка данных больше не нужны</div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal" data-type="ai">
+          <div class="portfolio-top">
+            <div class="portfolio-nebula"></div>
+            <div class="portfolio-overlay"></div>
+            <span class="portfolio-type">Поиск заказов</span>
+          </div>
+          <div class="portfolio-body">
+            <div class="portfolio-title">Заказы без поиска</div>
+            <div class="portfolio-desc">Телеграм-агент сам просматривает фриланс-площадки и присылает подходящие заказы в чат — не нужно каждый день листать ленту вручную. На каждое объявление сразу готовит черновик отклика, остаётся только проверить и отправить</div>
           </div>
         </div>
 
